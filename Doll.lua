@@ -312,7 +312,7 @@ Scripts:AddButton({
 })
 
 Fling:AddToggle({
-	Name = "TouchFling",
+	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
 		noclip = Value
