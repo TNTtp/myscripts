@@ -61,6 +61,13 @@ Fling:AddToggle({
 	end    
 })
 
+Scripts:AddButton({
+	Name = "Reset",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+  	end    
+})
+
 OrionLib:Init()
 --[[
 game.Players.LocalPlayer.Character.HumanoidRootPart.Transparency = 0.5
