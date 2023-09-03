@@ -2,12 +2,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 hiddenfling = false
 
-noclip = false
-game:GetService('RunService').Stepped:connect(function()
-if noclip then
-game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-end
-end)
+
 
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
@@ -317,6 +312,12 @@ Fling:AddToggle({
 	Callback = function(Value)
 		noclip = Value
 	end    
+})
+Scripts:AddButton({
+	Name = "jjk",
+	Callback = function()
+      		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+  	end    
 })
 
 OrionLib:Init()
