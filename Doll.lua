@@ -2,6 +2,12 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 hiddenfling = false
 
+noclip = false
+game:GetService('RunService').Stepped:connect(function()
+if noclip then
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+end
+end)
 
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
@@ -305,13 +311,12 @@ Scripts:AddButton({
   	end    
 })
 
-Scripts:AddButton({
-	Name = "GodMode",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.Humanoid:Remove()
-                Instance.new('Humanoid', game.Players.LocalPlayer.Character)
-                game:GetService("Workspace")[game.Players.LocalPlayer.Name]:FindFirstChildOfClass('Humanoid').HipHeight = 2
-  	end    
+Fling:AddToggle({
+	Name = "TouchFling",
+	Default = false,
+	Callback = function(Value)
+		noclip = Value
+	end    
 })
 
 OrionLib:Init()
