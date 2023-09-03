@@ -29,7 +29,7 @@ local function fling()
 			end
 		end
 	end
-	wait()
+	wait(0.001)
 end
 
 local Window = OrionLib:MakeWindow({
@@ -54,7 +54,7 @@ Fling:AddToggle({
 	Name = "TouchFling",
 	Default = false,
 	Callback = function(Value)
-		hiddenfling = true
+		hiddenfling = Value
 		fling()
 	end    
 })
