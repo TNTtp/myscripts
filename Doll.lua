@@ -3,9 +3,9 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 hiddenfling = false
 
 if game:GetService("ReplicatedStorage"):FindFirstChild("juisdfj0i32i0eidsuf0iok") then
-	hiddenfling = false
+	
 else
-	hiddenfling = false
+	
 	detection = Instance.new("Decal")
 	detection.Name = "juisdfj0i32i0eidsuf0iok"
 	detection.Parent = game:GetService("ReplicatedStorage")
