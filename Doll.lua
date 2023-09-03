@@ -1,10 +1,35 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 hiddenfling = false
-if game:GetService("ReplicatedStorage"):FindFirstChild("juisdfj0i32i0eidsuf0iok") then
-	hiddenfling = false
+
+
+
+local Window = OrionLib:MakeWindow({
+	Name = "BlcHUB",
+	HidePremium = false,
+	SaveConfig = true,
+	ConfigFolder = "BlcHUB"
+})
+
+local Scripts = Window:MakeTab({
+	Name = "Scripts",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Fling = Scripts:AddSection({
+	Name = "Fling"
+})
+
+
+Fling:AddToggle({
+	Name = "TouchFling",
+	Default = false,
+	Callback = function(Value)
+		if game:GetService("ReplicatedStorage"):FindFirstChild("juisdfj0i32i0eidsuf0iok") then
+	hiddenfling = Value
 else
-	hiddenfling = false
+	hiddenfling = Value
 	detection = Instance.new("Decal")
 	detection.Name = "juisdfj0i32i0eidsuf0iok"
 	detection.Parent = game:GetService("ReplicatedStorage")
@@ -37,32 +62,7 @@ else
 	end
 		 
 	fling()
-end
-
-
-local Window = OrionLib:MakeWindow({
-	Name = "BlcHUB",
-	HidePremium = false,
-	SaveConfig = true,
-	ConfigFolder = "BlcHUB"
-})
-
-local Scripts = Window:MakeTab({
-	Name = "Scripts",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Fling = Scripts:AddSection({
-	Name = "Fling"
-})
-
-
-Fling:AddToggle({
-	Name = "TouchFling",
-	Default = false,
-	Callback = function(Value)
-		hiddenfling = Value
+			end
 	end    
 })
 
