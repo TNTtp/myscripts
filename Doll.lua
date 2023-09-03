@@ -73,7 +73,7 @@ Fling:AddToggle({
 	end    
 })
 
-
+OrionLib:Init()
 --[[
 game.Players.LocalPlayer.Character.HumanoidRootPart.Transparency = 0.5
 hiddenfling = false
