@@ -1,3 +1,4 @@
+game.Players.LocalPlayer.Character.HumanoidRootPart.Transparency = 0.5
 hiddenfling = false
 	 if game:GetService("ReplicatedStorage"):FindFirstChild("juisdfj0i32i0eidsuf0iok") then
 		 hiddenfling = true
