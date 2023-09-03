@@ -1,13 +1,17 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "Title of the library",
+	Name = "BlcHUB",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "BlcHUB"
 })
 
-
+local Tab = Window:MakeTab({
+	Name = "Fling",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
 
 
