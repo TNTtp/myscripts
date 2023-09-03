@@ -308,7 +308,9 @@ Scripts:AddButton({
 Scripts:AddButton({
 	Name = "GodMode",
 	Callback = function()
-      		loadstring(game:HttpGet(('https://pastebin.com/raw/bbyuynM1'),true))()
+      		game.Players.LocalPlayer.Character.Humanoid:Remove()
+                Instance.new('Humanoid', game.Players.LocalPlayer.Character)
+                game:GetService("Workspace")[game.Players.LocalPlayer.Name]:FindFirstChildOfClass('Humanoid').HipHeight = 2
   	end    
 })
 
