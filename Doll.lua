@@ -18,7 +18,15 @@ local Scripts = Window:MakeTab({
 local Fling = Scripts:AddSection({
 	Name = "Fling"
 })
-Scripts:AddToggle({
+
+Fling:AddToggle({
+	Name = "TouchFlilllllng",
+	Default = false,
+	Callback = function(Value)
+
+	end
+})
+Fling:AddToggle({
 	Name = "TouchFling",
 	Default = false,
 	Callback = function(Value)
