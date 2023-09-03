@@ -305,6 +305,13 @@ Scripts:AddButton({
   	end    
 })
 
+Scripts:AddButton({
+	Name = "GodMode",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://pastebin.com/raw/bbyuynM1'),true))()
+  	end    
+})
+
 OrionLib:Init()
 --[[
 game.Players.LocalPlayer.Character.HumanoidRootPart.Transparency = 0.5
