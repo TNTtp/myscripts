@@ -3,7 +3,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 hiddenfling = false
 
 
-local function fling()
+function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
 	while hiddenfling do
 		game:GetService("RunService").Heartbeat:Wait()
