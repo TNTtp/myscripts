@@ -5,7 +5,7 @@ hiddenfling = false
 
 local function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
-	while true do
+	while hiddenfling do
 		game:GetService("RunService").Heartbeat:Wait()
 		if hiddenfling then
 			local lp = game.Players.LocalPlayer
@@ -29,9 +29,10 @@ local function fling()
 			end
 		end
 	end
+	wait(0.01)
 	
 end
-fling()
+
 local Window = OrionLib:MakeWindow({
 	Name = "BlcHUB",
 	HidePremium = false,
@@ -55,6 +56,7 @@ Fling:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		hiddenfling = Value
+		fling()
 		
 	end    
 })
