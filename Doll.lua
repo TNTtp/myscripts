@@ -29,9 +29,9 @@ local function fling()
 			end
 		end
 	end
-	wait(0.001)
+	
 end
-
+fling()
 local Window = OrionLib:MakeWindow({
 	Name = "BlcHUB",
 	HidePremium = false,
@@ -55,7 +55,7 @@ Fling:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		hiddenfling = Value
-		fling()
+		
 	end    
 })
 
