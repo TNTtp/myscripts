@@ -62,14 +62,7 @@ Fling:AddToggle({
 	Name = "TouchFling",
 	Default = false,
 	Callback = function(Value)
-		
-Fling:AddToggle({
-	Name = Value,
-	Default = false,
-	Callback = function(Value)
-		
-	end    
-})
+		hiddenfling = Value
 	end    
 })
 
