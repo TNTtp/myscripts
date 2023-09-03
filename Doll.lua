@@ -15,7 +15,7 @@ local Scripts = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local Fling = Tab:AddSection({
+local Fling = Scripts:AddSection({
 	Name = "Fling"
 })
 Scripts:AddToggle({
