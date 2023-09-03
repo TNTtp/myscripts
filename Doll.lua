@@ -1,9 +1,13 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 hiddenfling = false
-
-
-
+God = false
+function god()
+	while God do
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		wait()
+	end
+end
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
 	while hiddenfling do
@@ -307,18 +311,14 @@ Scripts:AddButton({
 })
 
 Fling:AddToggle({
-	Name = "Noclip",
+	Name = "god",
 	Default = false,
 	Callback = function(Value)
-		noclip = Value
+		God = Value
+		god()
 	end    
 })
-Scripts:AddButton({
-	Name = "jjk",
-	Callback = function()
-      		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-  	end    
-})
+
 
 OrionLib:Init()
 --[[
