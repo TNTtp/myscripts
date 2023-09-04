@@ -1,13 +1,31 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 hiddenfling = false
-God = false
-function god()
-	while God do
-		game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-		wait()
+
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+	Clip = false
+	local function Nocl()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+					v.CanCollide = false
+				end
+			end
+		end
+		wait(0.21) -- basic optimization
 	end
+	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
 end
+
+function clip()
+	if Noclip then Noclip:Disconnect() end
+	Clip = true
+end
+
+
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
 	while hiddenfling do
@@ -311,11 +329,10 @@ Scripts:AddButton({
 })
 
 Fling:AddToggle({
-	Name = "god",
+	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
-		God = Value
-		god()
+		noclip()
 	end    
 })
 
