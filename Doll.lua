@@ -357,6 +357,7 @@ Scripts:AddToggle({
 	                Signal1:Disconnect()
 	                Signal2:Disconnect()
 			end
+		end
 	        if Value == true then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	 local bv = Instance.new("BodyVelocity")
