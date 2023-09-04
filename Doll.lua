@@ -363,12 +363,6 @@ local Fly = Scripts:AddToggle({
 			end
 		end
 	        if Value == true then
-			while true do
-				if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-		                         Fly:Set(false)
-				end
-				wait()
-			end
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	 local bv = Instance.new("BodyVelocity")
 	 bv.Name = "VelocityHandler"
@@ -426,7 +420,13 @@ local Fly = Scripts:AddToggle({
 	 end
 	 end
 	 end)
-		else
+	 while true do
+				if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+		                         Fly:Set(false)
+				end
+				wait()
+				end
+		
 			
 		end
 		
