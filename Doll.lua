@@ -426,6 +426,7 @@ Scripts:AddToggle({
 while true do
 	if game.Players.LocalPlayer.Character.Humanoid.health <= 0 then
 		Fly:Set(false)
+		wait()
 	end
 end
 Fling:AddButton({
