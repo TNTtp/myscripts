@@ -341,18 +341,12 @@ Scripts:AddToggle({
 	end
 })
 
-Scripts:AddSlider({
-	Name = "Slider",
-	Min = 0,
-	Max = 200,
-	Default = 5,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 5,
-	Callback = function(Speed)
-		Scripts:AddToggle({
+Local Speed = Scripts:AddSlider({Name = "Slider",Min = 0,Max = 200,Default = 16,Color = Color3.fromRGB(255,255,255),Increment = 1,Callback = function(Speed) return Speed end})
+Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
+		Local Speed = Scripts:AddSlider({Name = "Slider",Min = 0,Max = 200,Default = 16,Color = Color3.fromRGB(255,255,255),Increment = 1,Callback = function(Speed) return Speed end})
 	        if Value == true then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	 local bv = Instance.new("BodyVelocity")
@@ -417,9 +411,6 @@ Scripts:AddSlider({
 		end
 	end
 })
-	end    
-})
-
 
 
 OrionLib:Init()
