@@ -592,7 +592,7 @@ Fling:AddButton({
 		end
 			end
 			for i,v in pairs(Players:GetPlayers()) do
-				SkidFling(v.name)
+				SkidFling(v.Name)
 				Wait(1)
 			end
 	end
