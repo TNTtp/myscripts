@@ -341,12 +341,25 @@ Scripts:AddToggle({
 	end
 })
 
-Local Speed = Scripts:AddSlider({Name = "Slider",Min = 0,Max = 200,Default = 16,Color = Color3.fromRGB(255,255,255),Increment = 1,Callback = function(Speed) return Speed end})
+Scripts:AddSlider({
+	Name = "Slider",
+	Min = 0,
+	Max = 20,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "bananas",
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+
+
 Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
-		Local Speed = Scripts:AddSlider({Name = "Slider",Min = 0,Max = 200,Default = 16,Color = Color3.fromRGB(255,255,255),Increment = 1,Callback = function(Speed) return Speed end})
 	        if Value == true then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	 local bv = Instance.new("BodyVelocity")
@@ -392,16 +405,16 @@ Scripts:AddToggle({
 	 local direction = controlModule:GetMoveVector()
 	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
 	 if direction.X > 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
 	 end
 	 if direction.X < 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
 	 end
 	 if direction.Z > 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
 	 end
 	 if direction.Z < 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
 	 end
 	 end
 	 end)
