@@ -341,7 +341,7 @@ Scripts:AddToggle({
 	end
 })
 
-Tab:AddSlider({
+Scripts:AddSlider({
 	Name = "Slider",
 	Min = 0,
 	Max = 200,
