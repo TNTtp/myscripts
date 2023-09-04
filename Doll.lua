@@ -38,17 +38,22 @@ function fling()
 				hrp = c:FindFirstChild("HumanoidRootPart") or c:FindFirstChild("Torso") or c:FindFirstChild("UpperTorso")
 			end
 			if hiddenfling then
-				vel = hrp.Velocity
-				hrp.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
-				game:GetService("RunService").RenderStepped:Wait()
-				if c and c.Parent and hrp and hrp.Parent then
-							hrp.Velocity = vel
+				for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+					if v:IsA('BasePart') and v.Name ~= floatName then
+						vel = v.Velocity
+						v.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
+						game:GetService("RunService").RenderStepped:Wait()
+						if c and c.Parent and v and v.Parent then
+							v.Velocity = vel
+						end
+						game:GetService("RunService").Stepped:Wait()
+						if c and c.Parent and v and v.Parent then
+							v.Velocity = vel + Vector3.new(0, movel, 0)
+							movel = movel * -1
+						end
+					end
 				end
-				game:GetService("RunService").Stepped:Wait()
-				if c and c.Parent and hrp and hrp.Parent then
-					hrp.Velocity = vel + Vector3.new(0, movel, 0)
-					movel = movel * -1
-				end
+				
 			end
 		end
 	end
