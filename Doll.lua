@@ -351,6 +351,9 @@ Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
+		if game.Players.LocalPlayer.Character.Humanoid.health <= 0 then
+			Fly:Set(false)
+		end
 		if Value == false then
 			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
