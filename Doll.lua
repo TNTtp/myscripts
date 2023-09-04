@@ -424,18 +424,11 @@ Scripts:AddToggle({
 		end
 	end
 })
-
-local Players = game:GetService("Players")
-local client = Players.LocalPlayer
-
-local character
-client.CharacterAdded:Connect(function(_character)
-    character = _character
-    character.Humanoid.Died:Connect(function()
-        Fly:Set(false)
-    end)
-end)
-
+while true do
+	if game.Players.LocalPlayer.Character.Humanoid.health <= 0 then
+		Fly:Set(false)
+	end
+end
 Fling:AddButton({
 	Name = "Flingall",
 	Callback = function()
