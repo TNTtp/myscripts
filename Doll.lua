@@ -362,13 +362,7 @@ Scripts:AddToggle({
 	                Signal2:Disconnect()
 			end
 		end
-		if Value == true and game.Players.LocalPlayer.Character.Humanoid.PlatformStand == false then
-			
-			
-	                
-	                Signal1:Disconnect()
-	                Signal2:Disconnect()
-		end
+		
 	        if Value == true then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	 local bv = Instance.new("BodyVelocity")
@@ -429,6 +423,13 @@ Scripts:AddToggle({
 	 end)
 		else
 			
+		end
+		if Value == true and game.Players.LocalPlayer.Character.Humanoid.PlatformStand == false then
+			
+			
+	                
+	                Signal1:Disconnect()
+	                Signal2:Disconnect()
 		end
 	end
 })
