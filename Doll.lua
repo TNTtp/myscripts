@@ -408,8 +408,11 @@ Scripts:AddToggle({
 	 end
 	 end)
 		else
-			clip()	
-			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
+	 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+	 Signal1:Disconnect()
+	 Signal2:Disconnect()
 		end
 	end
 })
