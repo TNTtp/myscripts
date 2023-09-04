@@ -332,8 +332,12 @@ Fling:AddToggle({
 	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
-		noclip()
-	end    
+	        if Value == true then
+			noclip()
+		else
+			clip()	
+		end
+	end
 })
 
 
