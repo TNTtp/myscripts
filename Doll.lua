@@ -35,7 +35,7 @@ function fling()
 			while hiddenfling and not (c and c.Parent and hrp and hrp.Parent) do
 				game:GetService("RunService").Heartbeat:Wait()
 				c = lp.Character
-				hrp = c:FindFirstChild("HumanoidRootPart") or c:FindFirstChild("Torso") or c:FindFirstChild("UpperTorso")
+				hrp = c:FindFirstChild("UpperTorso")
 			end
 			if hiddenfling then
 				print(hrp)
