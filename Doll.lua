@@ -593,7 +593,7 @@ Fling:AddButton({
 			end
 			for i,v in pairs(Players:GetPlayers()) do
 				SkidFling(v)
-				Wait(1)
+				Wait(0.1)
 			end
 	end
 })
