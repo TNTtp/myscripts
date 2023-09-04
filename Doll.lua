@@ -25,6 +25,9 @@ function clip()
 	Clip = true
 end
 
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+	Fly:Set(false)
+end)
 
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
@@ -35,7 +38,7 @@ function fling()
 			while hiddenfling and not (c and c.Parent and hrp and hrp.Parent) do
 				game:GetService("RunService").Heartbeat:Wait()
 				c = lp.Character
-				hrp = c:FindFirstChild("UpperTorso")
+				hrp = c:FindFirstChild("HumanoidRootPart") or c:FindFirstChild("Torso") or c:FindFirstChild("UpperTorso")
 			end
 			if hiddenfling then
 				print(hrp)
