@@ -420,16 +420,16 @@ local Fly = Scripts:AddToggle({
 	 end
 	 end
 	 end)
-	 while true do
+	 
+		
+			
+		end
+		while true do
 				if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
 		                         Fly:Set(false)
 				end
 				wait()
-				end
-		
-			
-		end
-		
+			end
 	end
 })
 
