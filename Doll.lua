@@ -328,7 +328,7 @@ Scripts:AddButton({
   	end    
 })
 
-Fling:AddToggle({
+Scripts:AddToggle({
 	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
@@ -340,6 +340,86 @@ Fling:AddToggle({
 		end
 	end
 })
+
+Tab:AddSlider({
+	Name = "Slider",
+	Min = 0,
+	Max = 200,
+	Default = 5,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 5,
+	Callback = function(Speed)
+		Scripts:AddToggle({
+	Name = "Fly",
+	Default = false,
+	Callback = function(Value)
+	        if Value == true then
+			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
+	 local bv = Instance.new("BodyVelocity")
+	 bv.Name = "VelocityHandler"
+	 bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	 bv.MaxForce = Vector3.new(0,0,0)
+	 bv.Velocity = Vector3.new(0,0,0)
+	 
+	 local bg = Instance.new("BodyGyro")
+	 bg.Name = "GyroHandler"
+	 bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 bg.P = 1000
+	 bg.D = 50
+	 
+	 local Signal1
+	 Signal1 = game.Players.LocalPlayer.CharacterAdded:Connect(function(NewChar)
+	 local bv = Instance.new("BodyVelocity")
+	 bv.Name = "VelocityHandler"
+	 bv.Parent = NewChar:WaitForChild("Humanoid").RootPart
+	 bv.MaxForce = Vector3.new(0,0,0)
+	 bv.Velocity = Vector3.new(0,0,0)
+	 
+	 local bg = Instance.new("BodyGyro")
+	 bg.Name = "GyroHandler"
+	 bg.Parent = NewChar:WaitForChild("Humanoid").HumanoidRootPart
+	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 bg.P = 1000
+	 bg.D = 50
+	 end)
+	 
+	 local camera = game.Workspace.CurrentCamera
+	 
+	 local Signal2
+	 Signal2 = game:GetService"RunService".RenderStepped:Connect(function()
+	 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+	 
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+	 
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
+	 local direction = controlModule:GetMoveVector()
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+	 if direction.X > 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+	 end
+	 if direction.X < 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*speed)
+	 end
+	 if direction.Z > 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+	 end
+	 if direction.Z < 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*speed)
+	 end
+	 end
+	 end)
+		else
+			clip()	
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+		end
+	end
+})
+	end    
+})
+
 
 
 OrionLib:Init()
