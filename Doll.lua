@@ -26,7 +26,6 @@ function clip()
 end
 
 
-
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
 	while hiddenfling do
@@ -39,6 +38,7 @@ function fling()
 				hrp = c:FindFirstChild("HumanoidRootPart") or c:FindFirstChild("Torso") or c:FindFirstChild("UpperTorso")
 			end
 			if hiddenfling then
+				print(hrp)
 				vel = hrp.Velocity
 				hrp.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
 				game:GetService("RunService").RenderStepped:Wait()
