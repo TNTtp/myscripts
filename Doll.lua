@@ -411,16 +411,17 @@ Scripts:AddToggle({
 	 end
 	 end
 	 end)
-		elseif Value == false then
+		
+				
+		end
+		if Value == false then
 			
-			game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler"):Destroy()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler"):Destroy()
+			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
 	                game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
 	                Signal1:Disconnect()
 	                Signal2:Disconnect()
-			
-				
-		end
+		end	
 	end
 })
 
