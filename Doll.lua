@@ -424,13 +424,7 @@ Scripts:AddToggle({
 		else
 			
 		end
-		if Value == true and game.Players.LocalPlayer.Character.Humanoid.PlatformStand == false then
-			
-			
-	                
-	                Signal1:Disconnect()
-	                Signal2:Disconnect()
-		end
+		
 	end
 })
 
