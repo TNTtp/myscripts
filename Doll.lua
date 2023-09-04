@@ -1,8 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
-        Fly:Set(false)
-end)
 
 hiddenfling = false
 
