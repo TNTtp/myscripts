@@ -353,13 +353,21 @@ Scripts:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		if Value == false then
+			
+			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
 	                game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
 	                game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 	                Signal1:Disconnect()
 	                Signal2:Disconnect()
 			end
+		end
+		if Value == true and game.Players.LocalPlayer.Character.Humanoid.PlatformStand == false then
+			
+			
+	                
+	                Signal1:Disconnect()
+	                Signal2:Disconnect()
 		end
 	        if Value == true then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
