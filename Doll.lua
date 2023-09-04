@@ -348,7 +348,7 @@ Scripts:AddToggle({
 
 
 
-Scripts:AddToggle({
+local Fly = Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
@@ -422,16 +422,13 @@ Scripts:AddToggle({
 		else
 			
 		end
-		if Value == true and game.Players.LocalPlayer.Character.Humanoid.PlatformStand == false then
-			
-			
-	                
-	                Signal1:Disconnect()
-	                Signal2:Disconnect()
-		end
+		
 	end
 })
 
+game.Players.LocalPlayer.Character.Humanoid.Dead:Connect(function()
+	Fly:Set(False)
+end)
 Fling:AddButton({
 	Name = "Flingall",
 	Callback = function()
