@@ -350,7 +350,7 @@ Scripts:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		if Value == false then
-			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler")
+			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
 	                game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler:Destroy()
 	                game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
