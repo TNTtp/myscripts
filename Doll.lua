@@ -352,6 +352,9 @@ local Fly = Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
+		if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+		        Fly:Set(false)
+		end
 		if Value == false then
 			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
@@ -426,12 +429,7 @@ local Fly = Scripts:AddToggle({
 	end
 })
 
-while true do
-	if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
-		Fly:Set(false)
-	end
-	wait()
-end
+
 
 Fling:AddButton({
 	Name = "Flingall",
