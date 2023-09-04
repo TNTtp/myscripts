@@ -336,7 +336,7 @@ Fling:AddToggle({
 			noclip()
 		else
 			clip()	
-			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.jumping)
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
 		end
 	end
 })
