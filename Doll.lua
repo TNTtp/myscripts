@@ -1,5 +1,9 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+        Fly:Set(false)
+end)
+
 hiddenfling = false
 
 local Noclip = nil
@@ -351,9 +355,6 @@ Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
-		if game.Players.LocalPlayer.Character.Humanoid.health <= 0 then
-			Fly:Set(false)
-		end
 		if Value == false then
 			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
