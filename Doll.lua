@@ -25,9 +25,7 @@ function clip()
 	Clip = true
 end
 
-game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-	Fly:Set(false)
-end)
+
 
 function fling()
 	local hrp, c, vel, movel = nil, nil, nil, 0.1
@@ -426,6 +424,17 @@ Scripts:AddToggle({
 		end
 	end
 })
+
+local Players = game:GetService("Players")
+local client = Players.LocalPlayer
+
+local character
+client.CharacterAdded:Connect(function(_character)
+    character = _character
+    character.Humanoid.Died:Connect(function()
+        Fly:Set(false)
+    end)
+end)
 
 Fling:AddButton({
 	Name = "Flingall",
