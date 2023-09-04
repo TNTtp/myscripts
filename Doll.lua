@@ -423,8 +423,14 @@ Scripts:AddToggle({
 })
 
 Fling:AddButton({
-	Name = "Fling all",
+	Name = "Flingall",
 	Callback = function()
+	 local player = game.Players.LocalPlayer
+	 
+	 local Players = game:GetService("Players")
+	 local Player = Players.LocalPlayer
+	 
+	 local AllBool = false
 		local SkidFling = function(TargetPlayer)
 		local Character = Player.Character
 		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
