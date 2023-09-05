@@ -1,5 +1,10 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
+function getRoot(char)
+	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+	return rootPart
+end
+
 local function getPlr(name)
    -- loop over all players:
    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
@@ -646,6 +651,7 @@ Scripts:AddButton({
 Scripts:AddButton({
 	Name = "Ride selected player",
 	Callback = function()
+		local Players = game:GetService("Players")
 		local speaker = game.Players.LocalPlayer
                 local Player = getPlr(OrionLib.Flags["select"].Value)
 		if Player ~= nil then
