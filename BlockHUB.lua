@@ -432,18 +432,29 @@ Scripts:AddDropdown({
 	Name = "Tp",
 	Default = "1",
 	Options = {"1", "IGotOpGamingchairLol"},
+	Flag = "tp",
 	Callback = function(Value)
-		local Players = game:GetService("Players")
+		
+	end    
+})
+
+Tab:AddButton({
+	Name = "Tp to selected player",
+	Callback = function()
+      		local Players = game:GetService("Players")
 	        local Player = Players.LocalPlayer
 		local Character = Player.Character
 		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
 		local RootPart = Humanoid and Humanoid.RootPart
-		if Players:FindFirstChild(Value) then
-		local Target = Players:WaitForChild(Value)
+		if Players:FindFirstChild(OrionLib.Flags["tp"].Value) then
+		local Target = Players:WaitForChild(OrionLib.Flags["tp"].Value)
 		RootPart.CFrame = CFrame.new(Target.Character.Humanoid.Position)
 		end
-	end    
+  	end    
 })
+
+
+
 
 Fling:AddButton({
 	Name = "Flingall",
