@@ -449,16 +449,16 @@ local choose = Scripts:AddDropdown({
 	Options = {"CHOOSE PLAYER"},
 	Flag = "select",
 	Callback = function(Value)
-		
-	end    
-})
-
-local plrs = {}
+		local plrs = {}
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 	table.insert(plrs, v.name)
 end
 
 choose:Refresh(plrs,true)
+	end    
+})
+
+
 
 Scripts:AddButton({
 	Name = "Fling selected player",
