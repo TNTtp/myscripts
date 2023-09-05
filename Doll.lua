@@ -352,7 +352,8 @@ local Fly = Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
-		
+		while true do
+		game:GetService("RunService").Heartbeat:Wait()
 		if Value == false then
 			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler:Destroy()
@@ -363,7 +364,7 @@ local Fly = Scripts:AddToggle({
 			end
 		end
 	        if Value == true then
-			while true do
+			
 			if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
 	local bv = Instance.new("BodyVelocity")
@@ -424,7 +425,7 @@ local Fly = Scripts:AddToggle({
 	 end
 	 end)
 	end
-	wait()
+	
 	end
 	 
 		
