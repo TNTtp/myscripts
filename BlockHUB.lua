@@ -1,6 +1,6 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local function GetPlr(name)
+local function getPlr(name)
    -- loop over all players:
    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
       -- if their name matches (case insensitive), return with that player:
@@ -625,7 +625,7 @@ Scripts:AddButton({
 		end
 			end
 			
-			local plr = GetPlr(OrionLib.Flags["select"].Value)
+			local plr = getPlr(OrionLib.Flags["select"].Value)
 			if plr ~= nil then
 			SkidFling(plr)
 		        end
@@ -636,14 +636,9 @@ Scripts:AddButton({
 Scripts:AddButton({
 	Name = "Tp to selected player",
 	Callback = function()
-      		local Players = game:GetService("Players")
-	        local Player = Players.LocalPlayer
-		local Character = Player.Character
-		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
-		local RootPart = Humanoid and Humanoid.RootPart
-		if Players:FindFirstChild(OrionLib.Flags["select"].Value) then
-		local Target = Players:WaitForChild(OrionLib.Flags["select"].Value)
-		RootPart.CFrame = CFrame.new(Target.Character.Humanoid.Position)
+		local Target = getPlr(OrionLib.Flags["select"].Value)
+		if Target ~= nil then
+      		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Target.Character.Humanoid.RootPart.CFrame
 		end
   	end    
 })
