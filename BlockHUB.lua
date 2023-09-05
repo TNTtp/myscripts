@@ -364,7 +364,7 @@ Scripts:AddToggle({
 Scripts:AddSlider({
 	Name = "Slider",
 	Min = 0,
-	Max = 200,
+	Max = 50,
 	Default = 16,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
