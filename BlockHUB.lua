@@ -654,7 +654,7 @@ Scripts:AddButton({
 		local Players = game:GetService("Players")
 		local players = getPlr(OrionLib.Flags["select"].Value)
 		local sitPlr = players.Name
-		if Target ~= nil then
+		if players ~= nil then
  
 		 sitDied = game.Players.LocalPlayer.Character:FindFirstChildOfClass'Humanoid'.Died:Connect(function()
 			 sitLoop = sitLoop:Disconnect()
