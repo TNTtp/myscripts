@@ -424,15 +424,16 @@ local Fly = Scripts:AddToggle({
 		
 			
 		end
+		game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+	                Fly.Set(false)
+                end)
 		
 	end
 })
 
 
 
-game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
-	Fly.Set(false)
-end)
+
 
 	
 Fling:AddButton({
