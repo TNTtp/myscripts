@@ -438,10 +438,8 @@ local choose = Scripts:AddDropdown({
 	end    
 })
 
-local plrs = {}
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-	table.insert(plrs, v.name)
-end
+local plrs = {"thh","uuuuuu","beans"}
+
 
 choose:Refresh(List<plrs>,true)
 
