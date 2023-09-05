@@ -643,7 +643,23 @@ Scripts:AddButton({
   	end    
 })
 
-
+Scripts:AddButton({
+	Name = "Ride selected player",
+	Callback = function()
+		local speaker = game.Players.LocalPlayer
+                local Player = getPlr(OrionLib.Flags["select"].Value)
+		if Player ~= nil then
+                speaker.Character:FindFirstChildOfClass('Humanoid').Sit = true
+		headSit = RunService.Heartbeat:Connect(function()
+			if Players:FindFirstChild(Player.Name) and Player.Character ~= nil and getRoot(Player.Character) and getRoot(speaker.Character) and speaker.Character:FindFirstChildOfClass('Humanoid').Sit == true then
+				getRoot(speaker.Character).CFrame = getRoot(Player.Character).CFrame * CFrame.Angles(0,math.rad(0),0)* CFrame.new(0,1.6,0.4)
+			else
+				headSit:Disconnect()
+			end
+		end)
+		end
+  	end    
+})
 
 
 Fling:AddButton({
