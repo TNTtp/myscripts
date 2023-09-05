@@ -424,6 +424,7 @@ local Fly = Scripts:AddToggle({
 	 end
 	 end)
 	end
+	wait()
 	end
 	 
 		
