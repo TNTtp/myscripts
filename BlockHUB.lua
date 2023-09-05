@@ -5,6 +5,7 @@ function getRoot(char)
 	return rootPart
 end
 
+
 local function getPlr(name)
    -- loop over all players:
    for _, player in pairs(game:GetService("Players"):GetPlayers()) do
@@ -449,15 +450,19 @@ local choose = Scripts:AddDropdown({
 	Options = {"CHOOSE PLAYER"},
 	Flag = "select",
 	Callback = function(Value)
-		local plrs = {}
+		
+	end    
+})
+
+game:GetService("RunService").Heartbeat:Connect(function()
+	local plrs = {}
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 	table.insert(plrs, v.name)
 end
 
-choose:Refresh(plrs,true)
-	end    
-})
+choose:Refresh(plrs,true)local plrs = {}
 
+end)
 
 
 Scripts:AddButton({
