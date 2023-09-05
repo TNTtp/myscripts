@@ -363,13 +363,16 @@ local Fly = Scripts:AddToggle({
 			end
 		end
 	        if Value == true then
+			while true do
+			if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
 			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
-	 local bv = Instance.new("BodyVelocity")
+	local bv = Instance.new("BodyVelocity")
 	 bv.Name = "VelocityHandler"
 	 bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
 	 bv.MaxForce = Vector3.new(0,0,0)
 	 bv.Velocity = Vector3.new(0,0,0)
-	 
+	
+	
 	 local bg = Instance.new("BodyGyro")
 	 bg.Name = "GyroHandler"
 	 bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -420,13 +423,13 @@ local Fly = Scripts:AddToggle({
 	 end
 	 end
 	 end)
+	end
+	end
 	 
 		
 			
 		end
-		game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
-	                Fly.Set(false)
-                end)
+		
 		
 	end
 })
