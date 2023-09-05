@@ -60,7 +60,7 @@ function fling()
 end
 
 local Window = OrionLib:MakeWindow({
-	Name = "BlockHUB📦",
+	Name = "BlockHUB📦 v1",
 	HidePremium = false,
 	SaveConfig = true,
 	ConfigFolder = "BlockHUB"
