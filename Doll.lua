@@ -430,6 +430,11 @@ local Fly = Scripts:AddToggle({
 
 
 
+game.Players.LocalPlayer.Character.Humanoid.Died:connect(function()
+	Fly.Set(false)
+end)
+
+	
 Fling:AddButton({
 	Name = "Flingall",
 	Callback = function()
