@@ -5,7 +5,7 @@ hiddenfling = false
 
 local Noclip = nil
 local Clip = nil
-
+local Flight = false
 function noclip()
 	Clip = false
 	local function Nocl()
@@ -25,6 +25,92 @@ function clip()
 	if Noclip then Noclip:Disconnect() end
 	Clip = true
 end
+
+
+
+
+function fly()
+	local hrp, c, vel, movel = nil, nil, nil, 0.1
+	while Flight do
+		game:GetService("RunService").Heartbeat:Wait()
+		
+			
+			if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
+			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
+	local bv = Instance.new("BodyVelocity")
+	 bv.Name = "VelocityHandler"
+	 bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	 bv.MaxForce = Vector3.new(0,0,0)
+	 bv.Velocity = Vector3.new(0,0,0)
+	
+	
+	 local bg = Instance.new("BodyGyro")
+	 bg.Name = "GyroHandler"
+	 bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 bg.P = 1000
+	 bg.D = 50
+	 
+	 local Signal1
+	 Signal1 = game.Players.LocalPlayer.CharacterAdded:Connect(function(NewChar)
+	 local bv = Instance.new("BodyVelocity")
+	 bv.Name = "VelocityHandler"
+	 bv.Parent = NewChar:WaitForChild("Humanoid").RootPart
+	 bv.MaxForce = Vector3.new(0,0,0)
+	 bv.Velocity = Vector3.new(0,0,0)
+	 
+	 local bg = Instance.new("BodyGyro")
+	 bg.Name = "GyroHandler"
+	 bg.Parent = NewChar:WaitForChild("Humanoid").HumanoidRootPart
+	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 bg.P = 1000
+	 bg.D = 50
+	 end)
+	 
+	 local camera = game.Workspace.CurrentCamera
+	 
+	 local Signal2
+	 Signal2 = game:GetService"RunService".RenderStepped:Connect(function()
+	 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
+	 
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+	 
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
+	 local direction = controlModule:GetMoveVector()
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
+	 if direction.X > 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
+	 end
+	 if direction.X < 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
+	 end
+	 if direction.Z > 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
+	 end
+	 if direction.Z < 0 then
+	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
+	 end
+	 end
+	 end)
+	
+	
+	end
+		end
+	 
+		
+			
+		
+		
+	end
+	wait(0.01)
+	
+end
+
+
+
+
 
 
 function fling()
@@ -352,7 +438,7 @@ local Fly = Scripts:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
-		while true do
+		Flight = Value
 		game:GetService("RunService").Heartbeat:Wait()
 		if Value == false then
 			if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
@@ -364,72 +450,8 @@ local Fly = Scripts:AddToggle({
 			end
 		end
 	        if Value == true then
-			
-			if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") then
-			local controlModule = require(game.Players.LocalPlayer.PlayerScripts:WaitForChild('PlayerModule'):WaitForChild("ControlModule"))
-	local bv = Instance.new("BodyVelocity")
-	 bv.Name = "VelocityHandler"
-	 bv.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-	 bv.MaxForce = Vector3.new(0,0,0)
-	 bv.Velocity = Vector3.new(0,0,0)
-	
-	
-	 local bg = Instance.new("BodyGyro")
-	 bg.Name = "GyroHandler"
-	 bg.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
-	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
-	 bg.P = 1000
-	 bg.D = 50
-	 
-	 local Signal1
-	 Signal1 = game.Players.LocalPlayer.CharacterAdded:Connect(function(NewChar)
-	 local bv = Instance.new("BodyVelocity")
-	 bv.Name = "VelocityHandler"
-	 bv.Parent = NewChar:WaitForChild("Humanoid").RootPart
-	 bv.MaxForce = Vector3.new(0,0,0)
-	 bv.Velocity = Vector3.new(0,0,0)
-	 
-	 local bg = Instance.new("BodyGyro")
-	 bg.Name = "GyroHandler"
-	 bg.Parent = NewChar:WaitForChild("Humanoid").HumanoidRootPart
-	 bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
-	 bg.P = 1000
-	 bg.D = 50
-	 end)
-	 
-	 local camera = game.Workspace.CurrentCamera
-	 
-	 local Signal2
-	 Signal2 = game:GetService"RunService".RenderStepped:Connect(function()
-	 if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character.Humanoid.RootPart and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("VelocityHandler") and game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("GyroHandler") then
-	 
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.MaxForce = Vector3.new(9e9,9e9,9e9)
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.MaxTorque = Vector3.new(9e9,9e9,9e9)
-	 game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
-	 
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.GyroHandler.CFrame = camera.CoordinateFrame
-	 local direction = controlModule:GetMoveVector()
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = Vector3.new()
-	 if direction.X > 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
-	 end
-	 if direction.X < 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity + camera.CFrame.RightVector*(direction.X*40)
-	 end
-	 if direction.Z > 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
-	 end
-	 if direction.Z < 0 then
-	 game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.VelocityHandler.Velocity - camera.CFrame.LookVector*(direction.Z*40)
-	 end
-	 end
-	 end)
-	end
-	
-	end
-	 
-		
-			
+				
+				fly()
 		end
 		
 		
