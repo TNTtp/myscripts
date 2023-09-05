@@ -441,7 +441,7 @@ local choose = Scripts:AddDropdown({
 local plrs = {"thh","uuuuuu","beans"}
 
 
-choose:Refresh(List<plrs>,true)
+choose:Refresh(plrs,true)
 
 Scripts:AddButton({
 	Name = "TpToSelectedPlayer",
