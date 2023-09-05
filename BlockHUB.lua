@@ -428,8 +428,8 @@ local Fly = Scripts:AddToggle({
 	end
 })
 
-Tab:AddDropdown({
-	Name = "Dropdown",
+Scripts:AddDropdown({
+	Name = "Tp",
 	Default = "1",
 	Options = {"1", "IGotOpGamingchairLol"},
 	Callback = function(Value)
