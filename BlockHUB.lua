@@ -438,7 +438,7 @@ Scripts:AddDropdown({
 	end    
 })
 
-Tab:AddButton({
+Scripts:AddButton({
 	Name = "Tp to selected player",
 	Callback = function()
       		local Players = game:GetService("Players")
