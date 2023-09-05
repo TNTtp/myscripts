@@ -438,8 +438,10 @@ Scripts:AddDropdown({
 		local Character = Player.Character
 		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
 		local RootPart = Humanoid and Humanoid.RootPart
-		local Target = Players:FindFirstChild(Value)
+		if Players:FindFirstChild(Value) then
+		local Target = Players:WaitForChild(Value)
 		RootPart.CFrame = CFrame.new(Target.Character.Humanoid.Position)
+		end
 	end    
 })
 
