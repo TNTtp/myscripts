@@ -626,7 +626,9 @@ Scripts:AddButton({
 			end
 			
 			local plr = GetPlr(OrionLib.Flags["select"].Value)
+			in not plr == nil then
 			SkidFling(plr)
+		        end
 			
   	end    
 })
