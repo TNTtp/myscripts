@@ -455,13 +455,14 @@ local choose = Scripts:AddDropdown({
 })
 local indexx = 0
 game:GetService("RunService").Heartbeat:Connect(function()
-	if math.fmod(100,indexx) == 100 then	
+	if indexx == 100 then	
 	local plrs = {}
 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 	table.insert(plrs, v.name)
 end
 
 choose:Refresh(plrs,true)local plrs = {}
+	indexx = -1
 	end
 indexx = indexx + 1
 	
