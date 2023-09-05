@@ -428,7 +428,20 @@ local Fly = Scripts:AddToggle({
 	end
 })
 
-
+Tab:AddDropdown({
+	Name = "Dropdown",
+	Default = "1",
+	Options = {"1", "IGotOpGamingchairLol"},
+	Callback = function(Value)
+		local Players = game:GetService("Players")
+	        local Player = Players.LocalPlayer
+		local Character = Player.Character
+		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+		local RootPart = Humanoid and Humanoid.RootPart
+		local Target = Players:FindFirstChild(Value)
+		RootPart.CFrame = CFrame.new(Target.Character.Humanoid.Position)
+	end    
+})
 
 Fling:AddButton({
 	Name = "Flingall",
