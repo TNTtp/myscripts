@@ -361,7 +361,18 @@ Scripts:AddToggle({
 })
 
 
-
+Scripts:AddSlider({
+	Name = "Slider",
+	Min = 0,
+	Max = 200,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	Flag = "Fspeed",
+	Callback = function(Value)
+		
+	end    
+})
 
 
 local Fly = Scripts:AddToggle({
