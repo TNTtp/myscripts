@@ -438,7 +438,7 @@ local choose = Scripts:AddDropdown({
 	end    
 })
 
-choose:Refresh(List<game:GetService("Players"):GetPlayers()>,true)
+
 
 Scripts:AddButton({
 	Name = "TpToSelectedPlayer",
