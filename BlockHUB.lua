@@ -439,7 +439,7 @@ Scripts:AddDropdown({
 })
 
 Scripts:AddButton({
-	Name = "Tp to selected player",
+	Name = "TpToSelectedPlayer",
 	Callback = function()
       		local Players = game:GetService("Players")
 	        local Player = Players.LocalPlayer
