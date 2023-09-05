@@ -462,8 +462,9 @@ for i,v in pairs(game:GetService("Players"):GetPlayers()) do
 end
 
 choose:Refresh(plrs,true)local plrs = {}
-indexx = indexx + 1
 	end
+indexx = indexx + 1
+	
 end)
 
 
