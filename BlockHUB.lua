@@ -649,7 +649,7 @@ Scripts:AddButton({
 })
 
 Scripts:AddButton({
-	Name = "Ride selected player",
+	Name = "Ride selected player.",
 	Callback = function()
 		local Players = game:GetService("Players")
 		local players = getPlr(OrionLib.Flags["select"].Value)
