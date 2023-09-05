@@ -428,7 +428,7 @@ local Fly = Scripts:AddToggle({
 	end
 })
 
-Scripts:AddDropdown({
+local choose = Scripts:AddDropdown({
 	Name = "Tp",
 	Default = "CHOOSE PLAYER",
 	Options = {"CHOOSE PLAYER"},
@@ -438,7 +438,7 @@ Scripts:AddDropdown({
 	end    
 })
 
-Dropdown:Refresh(List<game:GetService("Players"):GetPlayers()>,true)
+choose:Refresh(List<game:GetService("Players"):GetPlayers()>,true)
 
 Scripts:AddButton({
 	Name = "TpToSelectedPlayer",
