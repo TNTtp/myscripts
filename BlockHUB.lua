@@ -430,13 +430,15 @@ local Fly = Scripts:AddToggle({
 
 Scripts:AddDropdown({
 	Name = "Tp",
-	Default = "1",
-	Options = {"1", "IGotOpGamingChairLol"},
+	Default = "CHOOSE PLAYER",
+	Options = {"CHOOSE PLAYER"},
 	Flag = "tp",
 	Callback = function(Value)
 		
 	end    
 })
+
+Dropdown:Refresh(List<game:GetService("Players"):GetPlayers()>,true)
 
 Scripts:AddButton({
 	Name = "TpToSelectedPlayer",
