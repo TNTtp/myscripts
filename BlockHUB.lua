@@ -1030,7 +1030,8 @@ Fling:AddToggle({
 		else
 		end
 			end
-			
+
+			local foo = function()
 			while Value do
 			game:GetService("RunService").Heartbeat:Wait()
 			for i,v in pairs(Players:GetPlayers()) do
@@ -1038,10 +1039,10 @@ Fling:AddToggle({
 				
 				Wait()
 			end
-			
-			Wait()
-		        end
 			end
+			end
+			foo()
+			
 	end
 })
 
