@@ -1031,11 +1031,10 @@ Fling:AddToggle({
 		end
 			end
 			while Value do
+			game:GetService("RunService").Heartbeat:Wait()
 			for i,v in pairs(Players:GetPlayers()) do
 				SkidFling(v)
-				if Value == false then
-				return
-				end
+				
 				Wait()
 			end
 			
