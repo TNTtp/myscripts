@@ -16,6 +16,16 @@ local function getPlr(name)
    end
    -- if we reach the end of the for-loop, no player with that name was found
 end
+local foo = function()
+while Value do
+			game:GetService("RunService").Heartbeat:Wait()
+			for i,v in pairs(Players:GetPlayers()) do
+				SkidFling(v)
+				
+				Wait()
+			end
+end
+end
 
 hiddenfling = false
 
@@ -863,6 +873,7 @@ Fling:AddToggle({
 	Name = "Fling all loop",
 	Default = false,
 	Callback = function(Value)
+	
 	if Value == true then
 	 local player = game.Players.LocalPlayer
 	 
@@ -1031,9 +1042,16 @@ Fling:AddToggle({
 		end
 			end
 
+			while  do
+			game:GetService("RunService").Heartbeat:Wait()
+			for i,v in pairs(Players:GetPlayers()) do
+				SkidFling(v)
+				
+				Wait()
+			end
+				end
 			
-			
-			
+			foo()
 			end
 	end
 })
