@@ -1041,7 +1041,7 @@ Fling:AddToggle({
 			end
 			end
 			
-			
+			end
 	end
 })
 
