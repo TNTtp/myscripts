@@ -1032,14 +1032,7 @@ Fling:AddToggle({
 			end
 
 			
-			while Value do
-			game:GetService("RunService").Heartbeat:Wait()
-			for i,v in pairs(Players:GetPlayers()) do
-				SkidFling(v)
-				
-				Wait()
-			end
-			end
+			
 			
 			end
 	end
