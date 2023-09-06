@@ -1029,10 +1029,13 @@ Fling:AddToggle({
 		else
 		end
 			end
-			while Value == true do
+			while true do
 			for i,v in pairs(Players:GetPlayers()) do
 				SkidFling(v)
 				Wait()
+			end
+			if Value == false then
+				return
 			end
 			Wait()
 		        end
