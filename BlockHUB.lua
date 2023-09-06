@@ -863,6 +863,7 @@ Fling:AddToggle({
 	Name = "Fling all loop",
 	Default = false,
 	Callback = function(Value)
+	if Value == true then
 	 local player = game.Players.LocalPlayer
 	 
 	 local Players = game:GetService("Players")
@@ -1030,15 +1031,17 @@ Fling:AddToggle({
 		end
 			end
 			while true do
+			if Value == false then
+				return
+			end
 			for i,v in pairs(Players:GetPlayers()) do
 				SkidFling(v)
 				Wait()
 			end
-			if Value == false then
-				return
-			end
+			
 			Wait()
 		        end
+			end
 	end
 })
 
