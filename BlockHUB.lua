@@ -860,7 +860,7 @@ Fling:AddButton({
 })
 
 Fling:AddToggle({
-	Name = "Fling all",
+	Name = "Fling all loop",
 	Default = false,
 	Callback = function(Value)
 	 local player = game.Players.LocalPlayer
