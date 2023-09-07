@@ -85,7 +85,7 @@ local Window = OrionLib:MakeWindow({
 })
 
 local Scripts = Window:MakeTab({
-	Name = "Scripts",
+	Name = "Scripts.",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
