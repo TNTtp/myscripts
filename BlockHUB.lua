@@ -108,7 +108,7 @@ Fling:AddToggle({
 })
 
 
-local cf = false
+
 Fling:AddToggle({
 	Name = "ClickFling",
 	Default = false,
@@ -117,7 +117,7 @@ Fling:AddToggle({
       	local Players = game:GetService("Players")
 	 local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
 	 
-	 local funct = Mouse.Button1Down:Connect(function()
+	 Mouse.Button1Down:Connect(function()
 		 local Target = Mouse.Target
 		 if Target and Target.Parent and Target.Parent:IsA("Model") and Players:GetPlayerFromCharacter(Target.Parent) then
 			 local PlayerName = Players:GetPlayerFromCharacter(Target.Parent).Name
@@ -352,6 +352,7 @@ print(Time)
 		end
 		wait()
   	end    
+	end
 })
 
 Scripts:AddButton({
