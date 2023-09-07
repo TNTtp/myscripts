@@ -1216,7 +1216,8 @@ Fling:AddToggle({
 				
 				Wait()
 			end
-				end
+			end
+			end
 			
 			
 	end
