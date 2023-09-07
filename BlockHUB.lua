@@ -345,6 +345,27 @@ print(Time)
 })
 
 Scripts:AddButton({
+	Name = "Rejoin",
+	Callback = function()
+      			 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+ 
+	 
+	 if not DONE then
+	   DONE = true
+	   local qot = print("a")
+	   local hrp = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+	   if hrp then
+		 qot = "task.spawn(function() end) repeat wait() until game and game:IsLoaded() local lp = game:GetService('Players').LocalPlayer local char = lp.Character or lp.CharacterAdded:Wait() repeat char:WaitForChild('HumanoidRootPart').CFrame = CFrame.new("..tostring(hrp.CFrame)..") wait() until (Vector3.new("..tostring(hrp.Position)..") - char:WaitForChild('HumanoidRootPart').Position).Magnitude < 10"
+	   end
+	   queueteleport(qot)
+	   game:GetService("TeleportService"):TeleportCancel()
+		 game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+			end
+  	end    
+})
+
+
+Scripts:AddButton({
 	Name = "Reset",
 	Callback = function()
       		game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
