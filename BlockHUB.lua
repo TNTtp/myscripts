@@ -346,7 +346,7 @@ print(Time)
 	 end)
 	local cff = true
 	while cff do
-		if cf = false 
+		if cf = false then
 		funct:Disconnect()
 		cff = false
 		end
