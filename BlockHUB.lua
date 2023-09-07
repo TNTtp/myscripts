@@ -1211,7 +1211,7 @@ Fling:AddToggle({
 
 			while Value == true do
 			for i,v in pairs(Players:GetPlayers()) do
-				if game.Players:FindFirstChild(v.Name)
+				if game.Players:FindFirstChild(v.Name) then
 				SkidFling(v)
 				end
 				Wait()
