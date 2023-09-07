@@ -1039,7 +1039,7 @@ Fling:AddButton({
 Fling:AddToggle({
 	Name = "Fling all loop.",
 	Default = false,
-	Callback = function(Value)
+	Callback = function(Fli)
 	
 	
 	 local player = game.Players.LocalPlayer
@@ -1209,7 +1209,7 @@ Fling:AddToggle({
 		end
 			end
 
-			while Value == true do
+			while Fli == true do
 			for i,v in pairs(Players:GetPlayers()) do
 				if game.Workspace:FindFirstChild(v.name) then
 				SkidFling(v)
