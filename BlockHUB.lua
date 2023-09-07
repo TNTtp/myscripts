@@ -96,6 +96,12 @@ local Fling = Window:MakeTab({
 	PremiumOnly = false
 })
 
+local Movement= Window:MakeTab({
+	Name = "Movement",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
 
 Fling:AddToggle({
 	Name = "TouchFling",
@@ -383,7 +389,7 @@ Scripts:AddButton({
   	end    
 })
 
-Scripts:AddToggle({
+Movement:AddToggle({
 	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
@@ -400,7 +406,7 @@ Scripts:AddToggle({
 
 
 
-local Fly = Scripts:AddToggle({
+local Fly = Movement:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
