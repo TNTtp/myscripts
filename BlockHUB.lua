@@ -108,14 +108,16 @@ Fling:AddToggle({
 })
 
 
-
-Fling:AddButton({
+local cf = false
+Fling:AddToggle({
 	Name = "ClickFling",
-	Callback = function()
-      		local Players = game:GetService("Players")
+	Default = false,
+	Callback = function(Value)
+	cf = Value
+      	local Players = game:GetService("Players")
 	 local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
 	 
-	 Mouse.Button1Down:Connect(function()
+	 local funct = Mouse.Button1Down:Connect(function()
 		 local Target = Mouse.Target
 		 if Target and Target.Parent and Target.Parent:IsA("Model") and Players:GetPlayerFromCharacter(Target.Parent) then
 			 local PlayerName = Players:GetPlayerFromCharacter(Target.Parent).Name
@@ -316,6 +318,7 @@ print(Time)
 			workspace.FallenPartsDestroyHeight = getgenv().FPDH
 		else
 		end
+		
 	 end
 	 
 	 getgenv().Welcome = true
@@ -341,6 +344,13 @@ print(Time)
 	 end
 		 end
 	 end)
+	local cff = true
+	while cff do
+		if cf = false 
+		funct:Disconnect()
+		cff = false
+		end
+		wait()
   	end    
 })
 
