@@ -1037,7 +1037,7 @@ Fling:AddButton({
 })
 
 Fling:AddToggle({
-	Name = "Fling all loop.",
+	Name = "Fling all loop",
 	Default = false,
 	Callback = function(Fli)
 	
