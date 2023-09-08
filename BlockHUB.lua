@@ -5,7 +5,9 @@ function getRoot(char)
 	return rootPart
 end
 
- 
+
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/FE/main/notificationtest"))();
+local Notify = Notification.Notify;
 
 local function getPlr(name)
    -- loop over all players:
@@ -380,6 +382,52 @@ Scripts:AddButton({
 			end
   	end    
 })
+
+
+Scripts:AddButton({
+	Name = "Server Hop",
+	Callback = function()
+      		Notify({
+ Description = "Searching";
+ Title = "Nameless Admin";
+ Duration = 5;
+ 
+ });
+				 local Number = 0
+				 local SomeSRVS = {}
+				 for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+					 if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+						 if v.playing > Number then
+							 Number = v.playing
+							 SomeSRVS[1] = v.id
+						 end
+					 end
+				 end
+				 if #SomeSRVS > 0 then
+				 Notify({
+ Description = "Searched, please wait while we are teleporting you";
+ Title = "Nameless Admin";
+ Duration = 5;
+ 
+ });
+				         queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+ 
+	 
+	 if not DONE then
+	   DONE = true
+	   local qot = print("a")
+	   local hrp = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+	   if hrp then
+		 qot = 'task.spawn(function() end) repeat wait() until game and game:IsLoaded() local lp = game:GetService("Players").LocalPlayer local char = lp.Character or lp.CharacterAdded:Wait() repeat char:WaitForChild("HumanoidRootPart").CFrame = CFrame.new('..tostring(hrp.CFrame)..') wait() until (Vector3.new('..tostring(hrp.Position)..') - char:WaitForChild("HumanoidRootPart").Position).Magnitude < 10 loadstring(game:HttpGet("https://raw.githubusercontent.com/tnttp/myscripts/main/BlockHUB.lua"))()'
+	   end
+	   queueteleport(qot)
+					game:GetService("TeleportService"):TeleportCancel()
+					 game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, SomeSRVS[1])
+				 end
+ 
+  	end    
+})
+ 
 
 
 Scripts:AddButton({
