@@ -98,10 +98,52 @@ local Fling = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local Movement= Window:MakeTab({
-	Name = "Movement",
+local Server = Window:MakeTab({
+	Name = "Server",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
+})
+
+local Player = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Chat = Window:MakeTab({
+	Name = "Chat",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Chat:AddTextbox({
+	Name = "Select text",
+	Default = "Type text here",
+	TextDisappear = true,
+	Flag = "TextS",
+	Callback = function(Value)
+		
+	end	  
+})
+local AutoChat = false
+Chat:AddToggle({
+	Name = "Spam selected text",
+	Default = false,
+	Callback = function(Value)
+	AutoChat = Value	
+  local AutoChat_Time = 1
+  
+   
+
+
+local chatrem = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
+
+while task.wait(AutoChat_Time) and AutoChat = true do
+	
+    chatrem:FireServer(OrionLib.Flags["TextS"].Value, "All")
+    print("Sent Message")
+			end
+	end    
 })
 
 
@@ -363,7 +405,7 @@ print(Time)
 	end
 })
 
-Scripts:AddButton({
+Server:AddButton({
 	Name = "Rejoin",
 	Callback = function()
       			 queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
@@ -384,7 +426,7 @@ Scripts:AddButton({
 })
 
 
-Scripts:AddButton({
+Server:AddButton({
 	Name = "Server Hop",
 	Callback = function()
       		Notify({
@@ -431,14 +473,14 @@ Scripts:AddButton({
  
 
 
-Scripts:AddButton({
+Player:AddButton({
 	Name = "Reset",
 	Callback = function()
       		game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
   	end    
 })
 
-Movement:AddToggle({
+Player:AddToggle({
 	Name = "Noclip",
 	Default = false,
 	Callback = function(Value)
@@ -455,7 +497,7 @@ Movement:AddToggle({
 
 
 
-local Fly = Movement:AddToggle({
+local Fly = Player:AddToggle({
 	Name = "Fly",
 	Default = false,
 	Callback = function(Value)
