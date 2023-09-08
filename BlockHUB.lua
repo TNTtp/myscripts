@@ -389,7 +389,7 @@ Scripts:AddButton({
 	Callback = function()
       		Notify({
  Description = "Searching";
- Title = "Nameless Admin";
+ Title = "BlockHUB";
  Duration = 5;
  
  });
@@ -406,7 +406,7 @@ Scripts:AddButton({
 				 if #SomeSRVS > 0 then
 				 Notify({
  Description = "Searched, please wait while we are teleporting you";
- Title = "Nameless Admin";
+ Title = "BlockHUB";
  Duration = 5;
  
  });
