@@ -423,6 +423,7 @@ Scripts:AddButton({
 	   queueteleport(qot)
 					game:GetService("TeleportService"):TeleportCancel()
 					 game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, SomeSRVS[1])
+				end
 				 end
  
   	end    
