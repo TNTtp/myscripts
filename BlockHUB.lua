@@ -117,6 +117,16 @@ local Chat = Window:MakeTab({
 })
 
 
+Chat:AddTextbox({
+	Name = "Select text",
+	Default = "Type text here",
+	TextDisappear = true,
+	Flag = "TextS",
+	Callback = function(Value)
+		
+	end	  
+})
+local AutoChat = false
 
 
 Fling:AddToggle({
