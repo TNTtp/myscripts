@@ -539,15 +539,26 @@ local Fly = Player:AddToggle({
 		
 	end
 })
-
+local Aj = false
 Player:AddToggle({
 	Name = "Airjump",
 	Default = false,
 	Callback = function(Value)
+		Aj = Value
+		if Aj then
 		local UserInputService = game:GetService("UserInputService")
-		UserInputService.JumpRequest:Connect(function()
+		local funct = UserInputService.JumpRequest:Connect(function()
 			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
                 end)
+		local Ajj = true
+	        while Ajj do
+		if Aj == false then
+		funct:Disconnect()
+		Ajj = false
+		end
+		wait()
+  	end 
+			end
 	end
 })
 
