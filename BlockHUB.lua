@@ -116,35 +116,7 @@ local Chat = Window:MakeTab({
 	PremiumOnly = false
 })
 
-Chat:AddTextbox({
-	Name = "Select text",
-	Default = "Type text here",
-	TextDisappear = true,
-	Flag = "TextS",
-	Callback = function(Value)
-		
-	end	  
-})
-local AutoChat = false
-Chat:AddToggle({
-	Name = "Spam selected text",
-	Default = false,
-	Callback = function(Value)
-	AutoChat = Value	
-  local AutoChat_Time = 1
-  
-   
 
-
-local chatrem = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
-
-while task.wait(AutoChat_Time) and AutoChat = true do
-	
-    chatrem:FireServer(OrionLib.Flags["TextS"].Value, "All")
-    print("Sent Message")
-			end
-	end    
-})
 
 
 Fling:AddToggle({
