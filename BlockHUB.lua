@@ -110,25 +110,6 @@ local Player = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local Chat = Window:MakeTab({
-	Name = "Chat",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-
-Chat:AddTextbox({
-	Name = "Select text",
-	Default = "Type text here",
-	TextDisappear = true,
-	Flag = "TextS",
-	Callback = function(Value)
-		
-	end	  
-})
-local AutoChat = false
-
-
 Fling:AddToggle({
 	Name = "TouchFling",
 	Default = false,
@@ -556,6 +537,17 @@ local Fly = Player:AddToggle({
 			
 		end
 		
+	end
+})
+
+Player:AddToggle({
+	Name = "Airjump",
+	Default = false,
+	Callback = function(Value)
+		local UserInputService = game:GetService("UserInputService")
+		UserInputService.JumpRequest:Connect(function()
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                end)
 	end
 })
 
