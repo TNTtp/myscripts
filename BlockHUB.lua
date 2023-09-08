@@ -59,7 +59,7 @@ function fling()
 			if hiddenfling then
 				print(hrp)
 				vel = hrp.Velocity
-				hrp.Velocity = vel * 1000000 + Vector3.new(0, 1000000, 0)
+				hrp.Velocity = vel * 100000000 + Vector3.new(0, 100000000, 0)
 				game:GetService("RunService").RenderStepped:Wait()
 				if c and c.Parent and hrp and hrp.Parent then
 							hrp.Velocity = vel
