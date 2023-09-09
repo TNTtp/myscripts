@@ -455,8 +455,67 @@ Player:AddToggle({
 		end
 	end
 })
+AntiFling = false
+Fling:AddToggle({
+	Name = "AntiFling",
+	Default = false,
+	Callback = function(Value)
+		AntiFling = Value
+	        if Value == true then
+			
+ local function NoCollision(PLR)
+	 if AntiFling and PLR.Character then
+		 for _,x in pairs(PLR.Character:GetDescendants()) do
+			 if x:IsA("BasePart") and x.CanCollide then
+				 x.CanCollide = false
+			 end
+		 end
+	 end
+ end
+ for _,v in pairs(game.Players:GetPlayers()) do
+	 if v ~= game.Players then
+		 local antifling = game:GetService('RunService').Stepped:connect(function()
+			 NoCollision(v)
+		 end)
+	 end
+ end
+ game.Players.PlayerAdded:Connect(function()
+	 if v ~= game.Players.LocalPlayer and antifling then
+		 local antifling = game:GetService('RunService').Stepped:connect(function()
+			NoCollision(v)
+		 end)
+	 end
+ end)
+ 
+ wait();
+ Notify({
+ Description = "Anti fling enabled";
+ Title = "BlockHUB";
+ Duration = 5;
+ 
+});
+		else
+			wait();
+Notify({
+Description = "Anti fling disabled";
+Title = "BlockHUB";
+Duration = 5;
 
+});
 
+for _,v in pairs(game.Players:GetPlayers()) do
+	if v ~= game.Players then
+char = v.Character
+for _,x in pairs(char:GetDescendants()) do
+	if x:IsA("BasePart") then
+		x.CanCollide = true
+	end
+end
+	end
+				end
+		end
+	end
+})
 
 
 
