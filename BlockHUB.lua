@@ -460,9 +460,9 @@ Fling:AddToggle({
 	Name = "AntiFling",
 	Default = false,
 	Callback = function(Value)
-		AntiFling = Value
+		
 	        if Value == true then
-			
+		AntiFling = true	
  local function NoCollision(PLR)
 	 if AntiFling and PLR.Character then
 		 for _,x in pairs(PLR.Character:GetDescendants()) do
@@ -495,6 +495,7 @@ Fling:AddToggle({
  
 });
 		else
+			AntiFling = true
 			wait();
 Notify({
 Description = "Anti fling disabled";
