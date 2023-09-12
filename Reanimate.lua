@@ -1,10 +1,10 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({
-	Name = "BlockHUB📦 v1",
+	Name = "Animation",
 	HidePremium = false,
 	SaveConfig = true,
-	ConfigFolder = "BlockHUB"
+	ConfigFolder = "Animations"
 })
 
 local Scripts = Window:MakeTab({
@@ -48,5 +48,5 @@ local choose = Scripts:AddDropdown({
 	end    
 })
 
-
+OrionLib:Init()
 
