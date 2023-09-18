@@ -15,7 +15,8 @@ while wait() do
          end
          if track2.IsPlaying == false then
             if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
-                track2:Play(.5, 1, 40)
+                track:Play(.1, 0.5, 40)
+                  
             end
          end
          
