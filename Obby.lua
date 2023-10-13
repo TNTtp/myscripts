@@ -353,16 +353,43 @@ i5.MouseButton1Click:Connect(function()
 		local myobby = game.Workspace.Obbies:WaitForChild(game.Players.LocalPlayer.name)
 		print(obby)
 		for i, v in pairs(obby.Items.Parts:GetChildren()) do
-			if obby.StartingSpawn.StartingPart.Position == Vector3.new(180,0,180) then
-				if myobby.StartingSpawn.StartingPart.Position == Vector3.new(180,0,180)
-					local args = {
-						[1] = "Part",
-						[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z) , 1, 0, 0, 0, 1, 0, 0, 0, 1)
+			if v.Name == "Part" then
+			if obby.StartingSpawn.StartingPart.Rotation == myobby.StartingSpawn.StartingPart.Rotation then
+				repeat
+				local args = {
+					[1] = "Part",
+					[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z) , 1, 0, 0, 0, 1, 0, 0, 0, 1)
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+				until myobby.Items.Parts:FindFirstChild("Part")
+				print("e")
+				wait(0.5)
+				myobby.Items.Parts.Part.Name = "Part"..tostring(i)
+				local args2 = {
+					[1] = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)),
+							[2] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)).CFrame * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
+							[3] = v.Size
+						}
 					}
-				end
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MoveObject"):InvokeServer(unpack(args2))
+				local args = {
+						[1] = {
+							[1] = workspace:WaitForChild("Obbies"):WaitForChild("TNT_tp"):WaitForChild("Items"):WaitForChild("Parts"):WaitForChild("Part")
+						},
+						[2] = "Color",
+						[3] = Color3.new(0.49052193760871887, 0.20689314603805542, 0.6470588445663452)
+					}
+
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					
+				
+			end
 			end
 			
-			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+			
 		end
 		
 end)
