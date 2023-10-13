@@ -350,8 +350,20 @@ local bringing=false
 i5.MouseButton1Click:Connect(function()
 		i5.Text="bringing" 
 		local obby = game.Workspace.Obbies:WaitForChild(target.name)
+		local myobby = game.Workspace.Obbies:WaitForChild(game.Players.LocalPlayer.name)
 		print(obby)
-		for i, v
+		for i, v in pairs(obby.Items.Parts:GetChildren()) do
+			if obby.StartingSpawn.StartingPart.Position == Vector3.new(180,0,180) then
+				if myobby.StartingSpawn.StartingPart.Position == Vector3.new(180,0,180)
+					local args = {
+						[1] = "Part",
+						[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z) , 1, 0, 0, 0, 1, 0, 0, 0, 1)
+					}
+				end
+			end
+			
+			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+		end
 		
 end)
 local iscg,_=pcall(function()
