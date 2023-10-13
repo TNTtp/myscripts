@@ -365,7 +365,7 @@ i5.MouseButton1Click:Connect(function()
 				print("e")
 				wait(0.5)
 				myobby.Items.Parts.Part.Name = "Part"..tostring(i)
-				local args2 = {
+				args = {
 					[1] = {
 						[1] = {
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)),
@@ -374,16 +374,63 @@ i5.MouseButton1Click:Connect(function()
 						}
 					}
 				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MoveObject"):InvokeServer(unpack(args2))
-				local args = {
+				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("MoveObject"):InvokeServer(unpack(args))
+					args = {
 						[1] = {
-							[1] = workspace:WaitForChild("Obbies"):WaitForChild("TNT_tp"):WaitForChild("Items"):WaitForChild("Parts"):WaitForChild("Part")
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
 						},
 						[2] = "Color",
-						[3] = Color3.new(0.49052193760871887, 0.20689314603805542, 0.6470588445663452)
+						[3] = v.Color
 					}
-
-			game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "CanColide",
+						[3] = v.CanColide
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "Material",
+						[3] = v.Material
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "Reflectance",
+						[3] = v.Reflectance
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "Surface",
+						[3] = v.TopSurface
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "Transparency",
+						[3] = v.Transparency
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					args = {
+						[1] = {
+							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
+						},
+						[2] = "Shape",
+						[3] = v.Shape
+					}
+					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
 					
 				
 			end
