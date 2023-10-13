@@ -348,9 +348,11 @@ local function notify(txt)
 end
 local bringing=false
 i5.MouseButton1Click:Connect(function()
-    i5.Text="bringing" 
-    local obby = game.Workspace.Obbies:WaitForChild(target.name)
-    print(obby)
+		i5.Text="bringing" 
+		local obby = game.Workspace.Obbies:WaitForChild(target.name)
+		print(obby)
+		for i, v
+		
 end)
 local iscg,_=pcall(function()
 	i8.Parent=game:FindFirstChildOfClass("CoreGui")
