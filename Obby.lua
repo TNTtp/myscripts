@@ -132,7 +132,7 @@ i5.TextColor3=c3(0.55,0.55,0.55)
 i5.TextSize=23 
 i6.Font=e.Font.SourceSans 
 i6.FontSize=e.FontSize.Size14 
-i6.Text="by MyWorld" 
+i6.Text="by BLOCKCE" 
 i6.TextColor=bc(2) 
 i6.TextColor3=c3(0.635294,0.635294,0.635294) 
 i6.AnchorPoint=v2(1,1) 
@@ -343,7 +343,7 @@ local function notify(txt)
 	i6.Text=txt
 	twait(2)
 	if notifyid==thisid then
-		i6.Text="by MyWorld"
+		i6.Text="by BLOCKCE"
 	end
 end
 local bringing=false
