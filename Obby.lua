@@ -348,19 +348,32 @@ local function notify(txt)
 end
 local bringing=false
 i5.MouseButton1Click:Connect(function()
-		i5.Text="bringing" 
+		i5.Text="copying" 
 		local obby = game.Workspace.Obbies:WaitForChild(target.name)
 		local myobby = game.Workspace.Obbies:WaitForChild(game.Players.LocalPlayer.name)
 		print(obby)
+		if obby.StartingSpawn.StartingPart.Rotation == myobby.StartingSpawn.StartingPart.Rotation then
 		for i, v in pairs(obby.Items.Parts:GetChildren()) do
 			if v.Name == "Part" then
-			if obby.StartingSpawn.StartingPart.Rotation == myobby.StartingSpawn.StartingPart.Rotation then
-				repeat
+			
+				
 				local args = {
 					[1] = "Part",
-					[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z) , 1, 0, 0, 0, 1, 0, 0, 0, 1)
+					[2] = myobby.Area.CFrame				
 				}
 				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+				local count = 0
+				repeat 
+					wait()
+					count = count + 1
+					if count >= 100 then
+						local args = {
+							[1] = "Part",
+							[2] = myobby.Area.Position				
+						}
+						game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
+						count = 0
+					end
 				until myobby.Items.Parts:FindFirstChild("Part")
 				print("e")
 				wait(0.5)
@@ -369,7 +382,7 @@ i5.MouseButton1Click:Connect(function()
 					[1] = {
 						[1] = {
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)),
-							[2] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)).CFrame * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
+							[2] = CFrame.New(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z)) * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
 							[3] = v.Size
 						}
 					}
@@ -434,8 +447,11 @@ i5.MouseButton1Click:Connect(function()
 					
 				
 			end
-			end
 			
+			
+			
+		end
+		else
 			
 		end
 		
