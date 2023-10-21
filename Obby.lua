@@ -369,7 +369,7 @@ i5.MouseButton1Click:Connect(function()
 					if count >= 100 then
 						local args = {
 							[1] = "Part",
-							[2] = myobby.Area.Position				
+							[2] = myobby.Area.CFrame				
 						}
 						game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
 						count = 0
@@ -404,12 +404,24 @@ i5.MouseButton1Click:Connect(function()
 						[3] = v.CanCollide
 					}
 					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					local function GetMaterialOfPartAsString(Part)
+    if not Part then return end
+    local EnumAsString = tostring(Part.Material)
+    local FirstDotPos = FindCharacterInString(EnumAsString, ".", 1)
+    if FirstDotPos then
+    	local SecondDotPos = FindCharacterInString(EnumAsString, ".", FirstDotPos + 1)
+	    if SecondDotPos then
+	    	local MaterialOfPart = string.sub(EnumAsString, SecondDotPos + 1)
+		    return MaterialOfPart
+	    end
+    end
+					end
 					args = {
 						[1] = {
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
 						},
 						[2] = "Material",
-						[3] = v.Material.Name
+						[3] = GetMaterialOfPartAsString(v)
 					}
 					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
 					args = {
