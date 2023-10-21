@@ -71,7 +71,7 @@ i1.Name=rs()
 i1.Parent=i8 
 i2.Font=e.Font.SourceSans 
 i2.FontSize=e.FontSize.Size24 
-i2.Text="FE bring gui" 
+i2.Text="Epic gui" 
 i2.TextColor=bc(1002) 
 i2.TextColor3=c3(0.815686,0.815686,0.815686) 
 i2.TextSize=20 
@@ -382,7 +382,7 @@ i5.MouseButton1Click:Connect(function()
 					[1] = {
 						[1] = {
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i)),
-							[2] = CFrame.New(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z)) * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
+							[2] = CFrame.new(myobby.StartingSpawn.StartingPart.Position.X + (v.Position.X - obby.StartingSpawn.StartingPart.Position.X), myobby.StartingSpawn.StartingPart.Position.Y + (v.Position.Y - obby.StartingSpawn.StartingPart.Position.Y) , myobby.StartingSpawn.StartingPart.Position.Z + (v.Position.Z - obby.StartingSpawn.StartingPart.Position.Z)) * CFrame.Angles(math.rad(v.Rotation.X), math.rad(v.Rotation.Y), math.rad(v.Rotation.Z)),
 							[3] = v.Size
 						}
 					}
@@ -400,8 +400,8 @@ i5.MouseButton1Click:Connect(function()
 						[1] = {
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
 						},
-						[2] = "CanColide",
-						[3] = v.CanColide
+						[2] = "CanCollide",
+						[3] = v.CanCollide
 					}
 					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
 					args = {
@@ -409,7 +409,7 @@ i5.MouseButton1Click:Connect(function()
 							[1] = myobby.Items.Parts:WaitForChild("Part"..tostring(i))
 						},
 						[2] = "Material",
-						[3] = v.Material
+						[3] = v.Material.Name
 					}
 					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
 					args = {
