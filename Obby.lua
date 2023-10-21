@@ -404,6 +404,18 @@ i5.MouseButton1Click:Connect(function()
 						[3] = v.CanCollide
 					}
 					game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("PaintObject"):InvokeServer(unpack(args))
+					local function FindCharacterInString(String, CharacterToFind, Start, End)
+    if not String or not CharacterToFind or not Start then return end
+    if not End then End = string.len(String) end
+    local CharacterPos
+    for i = Start, End do
+	    if string.sub(String, i, i) == CharacterToFind then
+	    	CharacterPos = i
+	    	break
+	    end
+    end
+    return CharacterPos
+	end
 					local function GetMaterialOfPartAsString(Part)
     if not Part then return end
     local EnumAsString = tostring(Part.Material)
