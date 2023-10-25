@@ -560,6 +560,38 @@ context_2.TextScaled = true
 context_2.TextSize = 14.000
 context_2.TextWrapped = true
 
+
+TNT_tp.Name = "TNT_tp"
+TNT_tp.Parent = Credits
+TNT_tp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TNT_tp.BackgroundTransparency = 1.000
+TNT_tp.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TNT_tp.BorderSizePixel = 0
+TNT_tp.Position = UDim2.new(0.0305343084, 0, 0.749021709, 0)
+TNT_tp.Size = UDim2.new(0.934010148, 0, 0.108391605, 0)
+TNT_tp.Font = Enum.Font.Cartoon
+TNT_tp.Text = "TNT_tp"
+TNT_tp.TextColor3 = Color3.fromRGB(255, 255, 255)
+TNT_tp.TextScaled = true
+TNT_tp.TextSize = 14.000
+TNT_tp.TextWrapped = true
+
+context_2.Name = "context"
+context_3.Parent = TNT_tp
+context_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+context_3.BackgroundTransparency = 1.000
+context_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+context_3.BorderSizePixel = 0
+context_3.Position = UDim2.new(-0.00225365674, 0, 0.985093653, 0)
+context_3.Size = UDim2.new(1, 0, 0.54838711, 0)
+context_3.Font = Enum.Font.Cartoon
+context_3.Text = "Special Thanks- Tester and created the loadstring"
+context_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+context_3.TextScaled = true
+context_3.TextSize = 14.000
+context_3.TextWrapped = true
+
+
 e.Name = "e"
 e.Parent = MainFrame
 e.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
@@ -909,35 +941,6 @@ X.TextSize = 14.000
 X.TextStrokeTransparency = 0.000
 X.TextWrapped = true
 
-context_2.Name = "context"
-context_3.Parent = TNT_tp
-context_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-context_3.BackgroundTransparency = 1.000
-context_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-context_3.BorderSizePixel = 0
-context_3.Position = UDim2.new(-0.00225365674, 0, 0.985093653, 0)
-context_3.Size = UDim2.new(1, 0, 0.54838711, 0)
-context_3.Font = Enum.Font.Cartoon
-context_3.Text = "Special Thanks- Tester and created the loadstring"
-context_3.TextColor3 = Color3.fromRGB(255, 255, 255)
-context_3.TextScaled = true
-context_3.TextSize = 14.000
-context_3.TextWrapped = true
-
-TNT_tp.Name = "TNT_tp"
-TNT_tp.Parent = Credits
-TNT_tp.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TNT_tp.BackgroundTransparency = 1.000
-TNT_tp.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TNT_tp.BorderSizePixel = 0
-TNT_tp.Position = UDim2.new(0.0305343084, 0, 0.749021709, 0)
-TNT_tp.Size = UDim2.new(0.934010148, 0, 0.108391605, 0)
-TNT_tp.Font = Enum.Font.Cartoon
-TNT_tp.Text = "TNT_tp"
-TNT_tp.TextColor3 = Color3.fromRGB(255, 255, 255)
-TNT_tp.TextScaled = true
-TNT_tp.TextSize = 14.000
-TNT_tp.TextWrapped = true
 
 nothing.Name = "nothing"
 nothing.Parent = TopBar
