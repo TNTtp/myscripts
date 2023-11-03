@@ -5,7 +5,7 @@ local TextLabelText2 = "Join https://discord.gg/V4Sta4qR5J/" -- change to whatev
 local TextFontAll = "FredokaOne" -- Enter Any Font!
 
 -- This will only load the script, not execute it.
-local executeScript = 
+local executeScript = loadstring(game:HttpGet(("https://raw.githubusercontent.com/TNTtp/Bloxburg/main/Bloxburgscript.lua"),true))
 
 -- Tween Service
 local TweenService = game:GetService("TweenService")
