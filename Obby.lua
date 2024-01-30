@@ -364,20 +364,8 @@ i5.MouseButton1Click:Connect(function()
 				}
 				game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
 				local count = 0
-				repeat 
-					wait()
-					count = count + 1
-					if count >= 100 then
-						local args = {
-							[1] = "Part",
-							[2] = myobby.Area.CFrame				
-						}
-						game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("AddObject"):InvokeServer(unpack(args))
-						count = 0
-					end
-				until myobby.Items.Parts:FindFirstChild("Part")
 				print("e")
-				wait(0.5)
+				repeat wait() until myobby.Items.Parts:FindFirstChild("Part")
 				myobby.Items.Parts.Part.Name = "Part"..tostring(i)
 				args = {
 					[1] = {
@@ -474,7 +462,7 @@ i5.MouseButton1Click:Connect(function()
 			end
 			
 	                end)
-                        wait(0.1)
+                        wait(1.5)
 			
 		end
 		else
