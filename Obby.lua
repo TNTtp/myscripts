@@ -354,6 +354,7 @@ i5.MouseButton1Click:Connect(function()
 		print(obby)
 		if obby.StartingSpawn.StartingPart.Rotation == myobby.StartingSpawn.StartingPart.Rotation then
 		for i, v in pairs(obby.Items.Parts:GetChildren()) do
+			task.spawn(function()
 			if v.Name == "Part" then
 			
 				
@@ -472,7 +473,8 @@ i5.MouseButton1Click:Connect(function()
 				
 			end
 			
-			
+	                end)
+                        wait(0.1)
 			
 		end
 		else
