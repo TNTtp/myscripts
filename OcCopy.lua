@@ -68,6 +68,19 @@ local ButtonStroke = Instance.new("UIStroke", Button)
 ButtonStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
 
+local Credits = Instance.new("TextLabel", Frame)
+Credits.AnchorPoint = Vector2.new(0,1)
+Credits.Position = UDim2.new(0, 0,1, 0)
+Credits.Size = UDim2.new(1, 0,0.05, 0)
+Credits.BackgroundTransparency = 1
+Credits.TextScaled = true
+Credits.TextColor3 = Color3.fromRGB(178, 178, 178)
+Credits.TextXAlignment = Enum.TextXAlignment.Left
+Credits.Text = "Made by BLOCKCE"
+Credits.FontFace = font
+
+
+
 local ended = false
 
 Frame.InputBegan:Connect(function(Imput)
