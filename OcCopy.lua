@@ -71,8 +71,7 @@ ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
 local ended = false
 
 Frame.InputBegan:Connect(function(Imput)
-	print(Imput.UserInputType)
-	if Imput.UserInputType == Enum.UserInputType.MouseButton1 then
+	if Imput.UserInputType == Enum.UserInputType.MouseButton1 or Imput.UserInputType == Enum.UserInputType.Touch then
 		local screenSize = workspace.Camera.ViewportSize
 		local FramePos = Frame.AbsolutePosition
 		local mousePos = plr:GetMouse()
@@ -92,7 +91,7 @@ Frame.InputBegan:Connect(function(Imput)
 end)
 
 Frame.InputEnded:Connect(function(Imput)
-	if Imput.UserInputType == Enum.UserInputType.MouseButton1 then
+	if Imput.UserInputType == Enum.UserInputType.MouseButton1 or Imput.UserInputType == Enum.UserInputType.Touch then
 		ended = true
 	end
 end)
