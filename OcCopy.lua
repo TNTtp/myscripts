@@ -1,4 +1,8 @@
 local plr = game.Players.LocalPlayer
+local T
+local Copying = false
+local Obbys = workspace.Obbies
+local myObby = Obbys:FindFirstChild(plr.Name)
 local font = Font.new(
 	"rbxasset://fonts/families/SourceSansPro.json",
 	Enum.FontWeight.Bold
@@ -70,7 +74,7 @@ ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
 
 local Credits = Instance.new("TextLabel", Frame)
 Credits.AnchorPoint = Vector2.new(0,1)
-Credits.Position = UDim2.new(0.01, 0,0.83, 0)
+Credits.Position = UDim2.new(0.025, 0,0.983, 0)
 Credits.Size = UDim2.new(1, 0,0.1, 0)
 Credits.BackgroundTransparency = 1
 Credits.TextScaled = true
@@ -115,7 +119,6 @@ end)
 
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	local Text = TextBox.Text
-	local chosenPlayer
 	if Text ~= "" then
 		local PlayerTable = game.Players:GetChildren()
 		table.sort(PlayerTable, function(a, b)
@@ -124,34 +127,46 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 		
 		for _, currentPlayer in game.Players:GetChildren() do
 			if string.lower(currentPlayer.Name):sub(1, #Text) == string.lower(Text) then
-				chosenPlayer = currentPlayer
+				T = currentPlayer
 				break
 			else
-				chosenPlayer = nil
+				T = nil
 			end
 		end
-		if chosenPlayer == nil then
+		if T == nil then
 			table.sort(PlayerTable, function(a, b)
 				return a.DisplayName > b.DisplayName
 			end)
 			for _, currentPlayer in game.Players:GetChildren() do
 				if string.lower(currentPlayer.DisplayName):sub(1, #Text) == string.lower(Text) then
-					chosenPlayer = currentPlayer
+					T = currentPlayer
 					break
 				else
-					chosenPlayer = nil
+					T = nil
 				end
 			end
 		end
 	end
 	
-	if chosenPlayer then
-		PlayerLabel.Text = chosenPlayer.Name.."("..chosenPlayer.DisplayName..")"
+	if T then
+		PlayerLabel.Text = T.Name.."("..T.DisplayName..")"
 	else
 		PlayerLabel.Text = ""
 	end
 end)
 
 Button.Activated:Connect(function()
-	
+	If Copying == False
+		If T and T.Parent then
+			Copying = True
+			Button.Text = "Cancel"
+			Button.TextColor3 = Color3.fromRGB(255, 0, 0)
+			ButtonStroke.Color = Color3.fromRGB(255, 0, 0)
+		end
+	else
+		Copying = False
+		Button.Text = "Copy"
+		Button.TextColor3 = Color3.fromRGB(0, 255, 0)
+		ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
+	end
 end)
