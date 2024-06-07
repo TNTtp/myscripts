@@ -156,7 +156,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 
 Button.Activated:Connect(function()
-	If Copying == False
+	If Copying == False then
 		If T and T.Parent then
 			Copying = True
 			Button.Text = "Cancel"
