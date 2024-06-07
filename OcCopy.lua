@@ -119,6 +119,7 @@ end)
 
 TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	local Text = TextBox.Text
+	T = nil
 	if Text ~= "" then
 		local PlayerTable = game.Players:GetChildren()
 		table.sort(PlayerTable, function(a, b)
@@ -156,15 +157,16 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 
 Button.Activated:Connect(function()
-	if Copying == False then
+	print(Copying)
+	if Copying == false then
 		if T and T.Parent then
-			Copying = True
+			Copying = true
 			Button.Text = "Cancel"
 			Button.TextColor3 = Color3.fromRGB(255, 0, 0)
 			ButtonStroke.Color = Color3.fromRGB(255, 0, 0)
 		end
 	else
-		Copying = False
+		Copying = false
 		Button.Text = "Copy"
 		Button.TextColor3 = Color3.fromRGB(0, 255, 0)
 		ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
