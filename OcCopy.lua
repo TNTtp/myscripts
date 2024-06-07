@@ -156,8 +156,8 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 
 Button.Activated:Connect(function()
-	If Copying == False then
-		If T and T.Parent then
+	if Copying == False then
+		if T and T.Parent then
 			Copying = True
 			Button.Text = "Cancel"
 			Button.TextColor3 = Color3.fromRGB(255, 0, 0)
