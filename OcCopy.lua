@@ -3,6 +3,10 @@ local T
 local Copying = false
 local Obbys = workspace.Obbies
 local myObby = Obbys:FindFirstChild(plr.Name)
+local myArea
+if myObby then
+	myArea = myObby:FindFirstChild("Area")
+end
 local font = Font.new(
 	"rbxasset://fonts/families/SourceSansPro.json",
 	Enum.FontWeight.Bold
@@ -156,14 +160,51 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	end
 end)
 
+local myParts = myObby.Items.Parts
+
 Button.Activated:Connect(function()
-	print(Copying)
 	if Copying == false then
 		if T and T.Parent then
 			Copying = true
 			Button.Text = "Cancel"
 			Button.TextColor3 = Color3.fromRGB(255, 0, 0)
 			ButtonStroke.Color = Color3.fromRGB(255, 0, 0)
+
+			local tObby = Obbys:FindFirstChild(T.Name)
+			if tObby then
+				local tArea = tObby:FindFirstChild("Area")
+				if tArea then
+					local Parts = tObby.Items.Parts:GetChildren()
+					local cd = false
+					for _, v in Parts do
+						local Pos = myArea.CFrame * v.CFrame:toObjectSpace(tArea.CFrame)
+						spawn(function()
+							local args = {
+								[1] = "Part",
+								[2] = myArea.CFrame
+							}
+							game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
+							delay(1,function()
+								cd = false
+							end)
+						end)
+						cd = true
+						local cancel = false
+						repeat
+							if Copying == false then
+								cancel = true
+								break
+							end
+							task.wait()
+						until cd == false
+						if cancel == true then
+							break
+						end
+						
+					end
+				end
+			end
+			
 		end
 	else
 		Copying = false
