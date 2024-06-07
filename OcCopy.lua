@@ -106,7 +106,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	if Text ~= "" then
 		local PlayerTable = game.Players:GetChildren()
 		table.sort(PlayerTable, function(a, b)
-			return a > b
+			return a.Name > b.Name
 		end)
 		
 		for _, currentPlayer in game.Players:GetChildren() do
