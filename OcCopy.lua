@@ -161,7 +161,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 end)
 
 local myParts = myObby.Items.Parts
-
+local mySpawn = myObby.StartingSpawn.StartingPart
 Button.Activated:Connect(function()
 	if Copying == false then
 		if T and T.Parent then
@@ -174,19 +174,33 @@ Button.Activated:Connect(function()
 			if tObby then
 				local tArea = tObby:FindFirstChild("Area")
 				if tArea then
+					local tSpawn = tObby.StartingSpawn.StartingPart
 					local Parts = tObby.Items.Parts:GetChildren()
 					local cd = false
 					for _, v in Parts do
-						local Pos = myArea.CFrame * v.CFrame:toObjectSpace(tArea.CFrame)
+						local Pos = CFrame.new(mySpawn.Position) * v.CFrame:toObjectSpace(CFrame.new(tSpawn.Position))
 						spawn(function()
 							local args = {
 								[1] = "Part",
 								[2] = myArea.CFrame
 							}
 							game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
-							delay(1,function()
+							delay(1.1,function()
 								cd = false
 							end)
+							local part = myParts:GetChildren()[#myParts:GetChildren()]
+							
+							local args = {
+								[1] = {
+									[1] = {
+										[1] = part,
+										[2] = Pos,
+										[3] = v.Size
+									}
+								}
+							}
+							
+							game:GetService("ReplicatedStorage").Events.MoveObject:InvokeServer(unpack(args))
 						end)
 						cd = true
 						local cancel = false
