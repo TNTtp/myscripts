@@ -101,10 +101,10 @@ Frame.InputBegan:Connect(function(Imput)
 		repeat wait()
 			local mousePos = plr:GetMouse()
 			local FramePos = Frame.AbsolutePosition
-			
+
 			local PosX = (mousePos.X - DistanceX) / screenSize.X + ((Frame.AbsoluteSize.X / 2) / screenSize.X)
 			local PosY = ((mousePos.Y - DistanceY) / screenSize.Y) + ((Frame.AbsoluteSize.Y) / screenSize.Y)
-			
+
 			Frame.Position = UDim2.new(PosX,0,PosY,0)
 		until ended == true
 		ended = false
@@ -129,7 +129,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 		table.sort(PlayerTable, function(a, b)
 			return a.Name > b.Name
 		end)
-		
+
 		for _, currentPlayer in game.Players:GetChildren() do
 			if string.lower(currentPlayer.Name):sub(1, #Text) == string.lower(Text) then
 				T = currentPlayer
@@ -152,7 +152,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 			end
 		end
 	end
-	
+
 	if T then
 		PlayerLabel.Text = T.Name.."("..T.DisplayName..")"
 	else
@@ -178,7 +178,6 @@ Button.Activated:Connect(function()
 					local Parts = tObby.Items.Parts:GetChildren()
 					local cd = false
 					for _, v in Parts do
-						if v:IsA("Part") then
 						local Pos = mySpawn.Position - (tSpawn.Position -v.Position)
 						spawn(function()
 							local stop
@@ -189,7 +188,7 @@ Button.Activated:Connect(function()
 								[1] = "Part",
 								[2] = CFrame.new(spawnX, spawnY, spawnZ) 
 							}
-							
+
 							local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 							local function partCheck()
 								if partmade ~= true then
@@ -198,16 +197,16 @@ Button.Activated:Connect(function()
 									partCheck()
 								end
 							end
-							
+
 							partCheck()
-							
-							
-							
+
+
+
 							local part = myParts:GetChildren()[#myParts:GetChildren()]
 
-							
-							
-							
+
+
+
 
 							local args = {
 								[1] = {
@@ -227,19 +226,7 @@ Button.Activated:Connect(function()
 								[2] = "Material",
 								[3] = tostring(v.Material):split(".")[3]
 							}
-							
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-							
-							local args = {
-								[1] = {
-									[1] = part
-								},
-								[2] = "Surface",
-								[3] = tostring(v.TopSurface):split(".")[3]
-							}
-							
+
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
@@ -248,14 +235,28 @@ Button.Activated:Connect(function()
 								[1] = {
 									[1] = part
 								},
-								[2] = "Shape",
-								[3] = v.Shape
+								[2] = "Surface",
+								[3] = tostring(v.TopSurface):split(".")[3]
 							}
-							
+
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
+							if v:IsA("Part") then
+								local args = {
+									[1] = {
+										[1] = part
+									},
+									[2] = "Shape",
+									[3] = v.Shape
+								}
+
+								repeat
+									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+								until stop == true
+							end
 							
+
 							cd = false
 
 							local args = {
@@ -267,12 +268,12 @@ Button.Activated:Connect(function()
 									}
 								}
 							}
-							
+
 							game:GetService("ReplicatedStorage").Events.MoveObject:InvokeServer(unpack(args))
 
-							
 
-							
+
+
 						end)
 						cd = true
 						local cancel = false
@@ -286,12 +287,12 @@ Button.Activated:Connect(function()
 						if cancel == true then
 							break
 						end
-						end
 						
+
 					end
 				end
 			end
-			
+
 		end
 	else
 		Copying = false
