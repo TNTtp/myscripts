@@ -261,6 +261,54 @@ Button.Activated:Connect(function()
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
 							
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Transparency",
+								[3] = v.Transparency
+							}
+
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "CanCollide",
+								[3] = v.CanCollide
+							}
+
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "CastShadow",
+								[3] = v.CastShadow
+							}
+
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Reflectance",
+								[3] = v.Reflectance
+							}
+
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 							if v:IsA("Part") then
 								local args = {
 									[1] = {
