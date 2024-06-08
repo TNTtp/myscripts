@@ -180,6 +180,7 @@ Button.Activated:Connect(function()
 					for _, v in Parts do
 						local Pos = mySpawn.Position - (tSpawn.Position -v.Position)
 						spawn(function()
+							local loopEnd
 							local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 							local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
 							local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
@@ -200,22 +201,12 @@ Button.Activated:Connect(function()
 							partCheck()
 							
 							
-							delay(1,function()
-								cd = false
-							end)
+							
 							local part = myParts:GetChildren()[#myParts:GetChildren()]
+
 							
-							local args = {
-								[1] = {
-									[1] = {
-										[1] = part,
-										[2] = CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z)),
-										[3] = v.Size
-									}
-								}
-							}
 							
-							game:GetService("ReplicatedStorage").Events.MoveObject:InvokeServer(unpack(args))
+							
 
 							local args = {
 								[1] = {
@@ -235,9 +226,44 @@ Button.Activated:Connect(function()
 								[3] = tostring(v.Material):split(".")[3]
 							}
 							
+							
+							
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Surface",
+								[3] = tostring(v.TopSurface):split(".")[3]
+							}
+							
 							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 
-							print()
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Shape",
+								[3] = v.Shape
+							}
+							
+							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							cd = false
+
+							local args = {
+								[1] = {
+									[1] = {
+										[1] = part,
+										[2] = CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z)),
+										[3] = v.Size
+									}
+								}
+							}
+							
+							game:GetService("ReplicatedStorage").Events.MoveObject:InvokeServer(unpack(args))
+
+							
+
+							
 						end)
 						cd = true
 						local cancel = false
