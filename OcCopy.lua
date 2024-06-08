@@ -178,9 +178,10 @@ Button.Activated:Connect(function()
 					local Parts = tObby.Items.Parts:GetChildren()
 					local cd = false
 					for _, v in Parts do
+						if v:IsA("Part") then
 						local Pos = mySpawn.Position - (tSpawn.Position -v.Position)
 						spawn(function()
-							local loopEnd
+							local stop
 							local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 							local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
 							local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
@@ -215,8 +216,9 @@ Button.Activated:Connect(function()
 								[2] = "Color",
 								[3] = v.Color
 							}
-							
-							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
 
 							local args = {
 								[1] = {
@@ -226,7 +228,9 @@ Button.Activated:Connect(function()
 								[3] = tostring(v.Material):split(".")[3]
 							}
 							
-							
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
 							
 							local args = {
 								[1] = {
@@ -236,7 +240,9 @@ Button.Activated:Connect(function()
 								[3] = tostring(v.TopSurface):split(".")[3]
 							}
 							
-							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
 
 							local args = {
 								[1] = {
@@ -246,7 +252,10 @@ Button.Activated:Connect(function()
 								[3] = v.Shape
 							}
 							
-							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 							cd = false
 
 							local args = {
@@ -276,6 +285,7 @@ Button.Activated:Connect(function()
 						until cd == false
 						if cancel == true then
 							break
+						end
 						end
 						
 					end
