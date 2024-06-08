@@ -180,18 +180,18 @@ Button.Activated:Connect(function()
 					for _, v in Parts do
 						local mirror = false
 						if mySpawn.Position.Z > 0 then
-							if mySpawn.Position.Z < 0 then
+							if tSpawn.Position.Z < 0 then
 								mirror = true
 							end
 						else
-							if mySpawn.Position.Z > 0 then
+							if tSpawn.Position.Z > 0 then
 								mirror = true
 							end
 						end
 						local Pos = Vector3.new(0,0,0)
 						local CF = CFrame.new(Vector3.new(0,0,0))
 						if mirror == true then
-							Pos = mySpawn.Position + (tSpawn.Position - v.Position)
+							Pos = Vector3.new(mySpawn.Position.X + (tSpawn.Position.X - v.Position.X), mySpawn.Position.Y - (tSpawn.Position.Y - v.Position.Y), mySpawn.Position.Z + (tSpawn.Position.Z - v.Position.Z))
 							CF = (CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z))) * CFrame.Angles(math.rad(180), 0, 0)
 						else
 							Pos = mySpawn.Position - (tSpawn.Position - v.Position)
