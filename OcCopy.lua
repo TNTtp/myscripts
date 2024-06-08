@@ -178,13 +178,25 @@ Button.Activated:Connect(function()
 					local Parts = tObby.Items.Parts:GetChildren()
 					local cd = false
 					for _, v in Parts do
-						local Pos = CFrame.new(mySpawn.Position) * v.CFrame:toObjectSpace(CFrame.new(tSpawn.Position))
+						local Pos = mySpawn.Position - (tSpawn.Position -v.Position)
 						spawn(function()
 							local args = {
 								[1] = "Part",
 								[2] = myArea.CFrame
 							}
-							game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
+							
+							local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
+							local function partCheck()
+								if not partmade then
+									task.wait(1)
+									partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
+									partCheck()
+								end
+							end
+							
+							partCheck()
+							
+							
 							delay(1.1,function()
 								cd = false
 							end)
@@ -194,13 +206,23 @@ Button.Activated:Connect(function()
 								[1] = {
 									[1] = {
 										[1] = part,
-										[2] = Pos,
+										[2] = CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z)),
 										[3] = v.Size
 									}
 								}
 							}
 							
 							game:GetService("ReplicatedStorage").Events.MoveObject:InvokeServer(unpack(args))
+
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Color",
+								[3] = v.Color
+							}
+							
+							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 						end)
 						cd = true
 						local cancel = false
