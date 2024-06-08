@@ -180,14 +180,17 @@ Button.Activated:Connect(function()
 					for _, v in Parts do
 						local Pos = mySpawn.Position - (tSpawn.Position -v.Position)
 						spawn(function()
+							local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
+							local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
+							local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
 							local args = {
 								[1] = "Part",
-								[2] = myArea.CFrame
+								[2] = CFrame.new(spawnX, spawnY, spawnZ) 
 							}
 							
 							local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 							local function partCheck()
-								if not partmade then
+								if partmade ~= true then
 									task.wait(1)
 									partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 									partCheck()
@@ -197,7 +200,7 @@ Button.Activated:Connect(function()
 							partCheck()
 							
 							
-							delay(1.1,function()
+							delay(1,function()
 								cd = false
 							end)
 							local part = myParts:GetChildren()[#myParts:GetChildren()]
@@ -223,6 +226,18 @@ Button.Activated:Connect(function()
 							}
 							
 							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+
+							local args = {
+								[1] = {
+									[1] = part
+								},
+								[2] = "Material",
+								[3] = tostring(v.Material):split(".")[3]
+							}
+							
+							game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+
+							print()
 						end)
 						cd = true
 						local cancel = false
