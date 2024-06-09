@@ -156,14 +156,15 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 	end
 end)
 
-local myParts = myObby.Items.Parts
-local mySpawn = myObby.StartingSpawn.StartingPart
+
 Button.Activated:Connect(function()
 	if Copying == false then
 		local myObby = Obbys:FindFirstChild(plr.Name)
 		local myArea
 		if myObby then
 		myArea = myObby:FindFirstChild("Area")
+		local myParts = myObby.Items.Parts
+		local mySpawn = myObby.StartingSpawn.StartingPart
 		if T and T.Parent then
 			Copying = true
 			Button.Text = "Cancel"
