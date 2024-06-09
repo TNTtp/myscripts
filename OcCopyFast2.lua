@@ -3,8 +3,6 @@ local T
 local Copying = false
 local Obbys = workspace.Obbies
 
--- Make the progresstext only appear when it is copying
--- Make the Copybutton Texrt change color with the CopyOutline color (Copy = Green, Cancle = Red)
 
 local ScreenGui = Instance.new("ScreenGui")
 local MainUI = Instance.new("Frame")
@@ -148,7 +146,7 @@ ProgressText.BorderSizePixel = 0
 ProgressText.Position = UDim2.new(0.29870972, 0, 1.25350952, 0)
 ProgressText.Size = UDim2.new(0.409836054, 0, 0.628571451, 0)
 ProgressText.Font = Enum.Font.Gotham
-ProgressText.Text = "0%"
+ProgressText.Text = ""
 ProgressText.TextColor3 = Color3.fromRGB(0, 255, 0)
 ProgressText.TextScaled = true
 ProgressText.TextSize = 14.000
