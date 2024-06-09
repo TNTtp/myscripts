@@ -272,10 +272,10 @@ Button.Activated:Connect(function()
 						local CF = CFrame.new(Vector3.new(0,0,0))
 						if mirror == true then
 							Pos = Vector3.new(mySpawn.Position.X + (tSpawn.Position.X - v.Position.X), mySpawn.Position.Y - (tSpawn.Position.Y - v.Position.Y), mySpawn.Position.Z + (tSpawn.Position.Z - v.Position.Z))
-							CF = (CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z))) * CFrame.Angles(math.rad(180), 0, 0)
+							CF = (CFrame.new(Pos) * v.CFrame.Rotation) * CFrame.Angles(math.rad(180), 0, 0)
 						else
-							Pos = mySpawn.Position - (tSpawn.Position - v.Position)
-							CF = CFrame.new(Pos) * CFrame.Angles(math.rad(v.Orientation.X), math.rad(v.Orientation.Y), math.rad(v.Orientation.Z))
+							Pos = mySpawn.Position. - (tSpawn.Position. - v.Position.)
+							CF = (CFrame.new(Pos) * v.CFrame.Rotation)
 						end
 
 						table.insert(args, {
