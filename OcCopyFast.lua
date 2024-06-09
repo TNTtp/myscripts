@@ -2,11 +2,7 @@ local plr = game.Players.LocalPlayer
 local T
 local Copying = false
 local Obbys = workspace.Obbies
-local myObby = Obbys:FindFirstChild(plr.Name)
-local myArea
-if myObby then
-	myArea = myObby:FindFirstChild("Area")
-end
+
 local font = Font.new(
 	"rbxasset://fonts/families/SourceSansPro.json",
 	Enum.FontWeight.Bold
@@ -164,6 +160,10 @@ local myParts = myObby.Items.Parts
 local mySpawn = myObby.StartingSpawn.StartingPart
 Button.Activated:Connect(function()
 	if Copying == false then
+		local myObby = Obbys:FindFirstChild(plr.Name)
+		local myArea
+		if myObby then
+		myArea = myObby:FindFirstChild("Area")
 		if T and T.Parent then
 			Copying = true
 			Button.Text = "Cancel"
@@ -194,6 +194,11 @@ Button.Activated:Connect(function()
 						[2] = CFrame.new(spawnX, spawnY, spawnZ) 
 					}
 
+					local stop = false
+					repeat
+						stop = game:GetService("ReplicatedStorage").Events.ClearObby:InvokeServer()
+					until stop == true
+					
 					local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 					local function partCheck()
 						if partmade ~= true then
@@ -274,7 +279,7 @@ Button.Activated:Connect(function()
 							Pos = Vector3.new(mySpawn.Position.X + (tSpawn.Position.X - v.Position.X), mySpawn.Position.Y - (tSpawn.Position.Y - v.Position.Y), mySpawn.Position.Z + (tSpawn.Position.Z - v.Position.Z))
 							CF = (CFrame.new(Pos) * v.CFrame.Rotation) * CFrame.Angles(math.rad(180), 0, 0)
 						else
-							Pos = mySpawn.Position. - (tSpawn.Position. - v.Position.)
+							Pos = mySpawn.Position - (tSpawn.Position - v.Position)
 							CF = (CFrame.new(Pos) * v.CFrame.Rotation)
 						end
 
@@ -515,10 +520,15 @@ Button.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
+							Copying = false
+							Button.Text = "Copy"
+							Button.TextColor3 = Color3.fromRGB(0, 255, 0)
+							ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
 						end
 					end
 				end
 			end
+		end
 		end
 	else
 		Copying = false
