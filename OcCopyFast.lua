@@ -305,9 +305,9 @@ Button.Activated:Connect(function()
 						  local argsParts = {part}
 						  for i2, secondPart in PartParts do
 							  if i2 > i then
-								  secondPart.Color == v.Color then
-									  table.insert(argsParts, secondPart)
-									  table.insert(paintedParts, secondPart)
+								  if secondPart.Color == v.Color then
+									  table.insert(argsParts, myPartParts[i2])
+									  table.insert(paintedParts, myPartParts[i2])
 								  end
 							  end
 						  end
