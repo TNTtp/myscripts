@@ -181,7 +181,7 @@ Button.Activated:Connect(function()
           
 
           for _, v in Parts do
-            if v:IsA("Part") then
+            if v.Name == "Part" then
               table.insert(partParts, v)
             end
           end
@@ -210,7 +210,7 @@ Button.Activated:Connect(function()
           local myPartParts = {}
 
           for _, v in myParts:GetChildren() do
-            if v:IsA("Part") then
+            if v.Name == "Part" then
               table.insert(myPartParts, v)
             end
           end
@@ -249,7 +249,7 @@ Button.Activated:Connect(function()
 					cloneCheck()
 
           for _, v in myParts:GetChildren() do
-            if v:IsA("Part") then
+            if v.Name == "Part" then
               table.insert(myPartParts, v)
             end
           end
@@ -296,7 +296,38 @@ Button.Activated:Connect(function()
 					end
 
 					moveCheck()
-            
+
+					local index = 1
+					local paintedParts = {}
+					for i, v in partParts do
+						local part = myPartParts[i]
+						if not table.find(paintedParts, part) then
+						  local argsParts = {part}
+						  for i2, secondPart in PartParts do
+							  if i2 > i then
+								  secondPart.Color == v.Color then
+									  table.insert(argsParts, secondPart)
+									  table.insert(paintedParts, secondPart)
+								  end
+							  end
+						  end
+							for i3, v in argsParts do
+								print(i3)
+							end
+
+						  local args = {
+							  [1] = argsParts,
+								[2] = "Color",
+						    [3] = v.Color
+					    }
+							local stop = false
+					    repeat
+						    stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+					    until stop == true
+						end
+						
+					end
+          
             
           
 					for _, v in {} do
