@@ -202,7 +202,7 @@ local function paintCalc(partParts)
 		[8] = {}, --CastShadow
 	}
 	local LoadMax = 0
-	
+
 	--Color
 	local paintedParts = {}
 	for i, v in partParts do
@@ -218,8 +218,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[1], {
-					[1] = Parts,
-					[2] = v.Color
+				[1] = Parts,
+				[2] = v.Color
 			})
 		end
 	end
@@ -239,8 +239,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[2], {
-					[1] = Parts,
-					[2] = v.Shape
+				[1] = Parts,
+				[2] = v.Shape
 			})
 		end
 	end
@@ -260,8 +260,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[3], {
-					[1] = Parts,
-					[2] = tostring(v.Material):split(".")[3]
+				[1] = Parts,
+				[2] = tostring(v.Material):split(".")[3]
 			})
 		end
 	end
@@ -281,8 +281,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[4], {
-					[1] = Parts,
-					[2] = tostring(v.TopSurface):split(".")[3]
+				[1] = Parts,
+				[2] = tostring(v.TopSurface):split(".")[3]
 			})
 		end
 	end
@@ -301,8 +301,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[5], {
-					[1] = Parts,
-					[2] = v.Transparency
+				[1] = Parts,
+				[2] = v.Transparency
 			})
 		end
 	end
@@ -321,8 +321,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[6], {
-					[1] = Parts,
-					[2] = v.Reflectance
+				[1] = Parts,
+				[2] = v.Reflectance
 			})
 		end
 	end
@@ -341,8 +341,8 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[7], {
-					[1] = Parts,
-					[2] = v.CanCollide
+				[1] = Parts,
+				[2] = v.CanCollide
 			})
 		end
 	end
@@ -361,12 +361,12 @@ local function paintCalc(partParts)
 				end
 			end
 			table.insert(Paint[8], {
-					[1] = Parts,
-					[2] = v.CastShadow
+				[1] = Parts,
+				[2] = v.CastShadow
 			})
 		end
 	end
-	
+
 	return Paint, LoadMax
 end
 
@@ -474,10 +474,10 @@ CopyButton.Activated:Connect(function()
 						end
 						local paint, loadMax = paintCalc(partParts)
 						loadMax += 3
-						local Load = 0
-						
-						
-						
+						local load = 0
+
+
+
 						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 						local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
 						local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
@@ -490,8 +490,8 @@ CopyButton.Activated:Connect(function()
 						repeat
 							stop = game:GetService("ReplicatedStorage").Events.ClearObby:InvokeServer()
 						until stop == true
-						
-						
+
+
 
 						local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 						local function partCheck()
@@ -503,7 +503,7 @@ CopyButton.Activated:Connect(function()
 						end
 
 						partCheck()
-						
+
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
@@ -549,7 +549,7 @@ CopyButton.Activated:Connect(function()
 						end
 
 						cloneCheck()
-						
+
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
@@ -605,15 +605,15 @@ CopyButton.Activated:Connect(function()
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
-						
+
 						--Color
 						for i, v in paint[1] do
 							local argsParts = {}
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -624,7 +624,7 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
 							load += 1
 							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
@@ -636,8 +636,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -660,8 +660,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -684,8 +684,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -708,8 +708,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -732,8 +732,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -756,8 +756,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -780,8 +780,8 @@ CopyButton.Activated:Connect(function()
 							for _, partI in v[1] do
 								table.insert(argsParts, myPartParts[partI])
 							end
-							
-							
+
+
 
 							local args = {
 								[1] = argsParts,
@@ -797,20 +797,21 @@ CopyButton.Activated:Connect(function()
 							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
-						
+
 						Copying = false
 						CopyButton.Text = "Copy"
 						CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
 						CopyOutline.Color = Color3.fromRGB(0, 255, 0)
 						ProgressText.Text = ""
+					end
 				end
 			end
+		else
+			Copying = false
+			CopyButton.Text = "Copy"
+			CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+			CopyOutline.Color = Color3.fromRGB(0, 255, 0)
+			ProgressText.Text = ""
 		end
-	else
-		Copying = false
-		CopyButton.Text = "Copy"
-		CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
-		CopyOutline.Color = Color3.fromRGB(0, 255, 0)
-		ProgressText.Text = ""
 	end
 end)
