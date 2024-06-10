@@ -191,8 +191,19 @@ Credits.TextWrapped = true
 
 
 local function paintCalc(partParts)
-	local Paint = {}
-	Paint[Color] = {}
+	local Paint = {
+		[1] = {}, --Color
+		[2] = {}, --Shape
+		[3] = {}, --Material
+		[4] = {}, --Surface
+		[5] = {}, --Transparency
+		[6] = {}, --Reflectance
+		[7] = {}, --CanCollide
+		[8] = {}, --CastShadow
+	}
+	
+	
+	--Color
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
@@ -205,12 +216,149 @@ local function paintCalc(partParts)
 					end
 				end
 			end
-			table.insert(Paint[Color], {
+			table.insert(Paint[1], {
 					[1] = Parts,
 					[2] = v.Color
 			})
 		end
 	end
+
+	--Shape
+	local paintedParts = {}
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.Shape == v.Shape then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[2], {
+					[1] = Parts,
+					[2] = v.Shape
+			})
+		end
+	end
+
+	--Material
+	local paintedParts = {}
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.Material == v.Material then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[3], {
+					[1] = Parts,
+					[2] = tostring(v.Material):split(".")[3]
+			})
+		end
+	end
+
+	--Surface
+	local paintedParts = {}
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.TopSurface == v.TopSurface then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[4], {
+					[1] = Parts,
+					[2] = tostring(v.TopSurface):split(".")[3]
+			})
+		end
+	end
+
+	--Transparency
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.Transparency == v.Transparency then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[5], {
+					[1] = Parts,
+					[2] = v.Transparency
+			})
+		end
+	end
+
+	--Reflectance
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.Reflectance == v.Reflectance then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[6], {
+					[1] = Parts,
+					[2] = v.Reflectance
+			})
+		end
+	end
+
+	--CanCollide
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.CanCollide == v.CanCollide then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[7], {
+					[1] = Parts,
+					[2] = v.CanCollide
+			})
+		end
+	end
+
+	--CastShadow
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.CastShadow == v.CastShadow then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[8], {
+					[1] = Parts,
+					[2] = v.CastShadow
+			})
+		end
+	end
+	
 	return Paint
 end
 
@@ -315,27 +463,9 @@ CopyButton.Activated:Connect(function()
 								table.insert(partParts, v)
 							end
 						end
-						local item = paintCalc(partParts)
-						local IfTable
-IfTable = function(Table)
-  for i,v in pairs(Table) do
-     if typeof(v) == "table" then
-        IfTable(v)
-    else
-      print(v)
-    end
-  end
-end 
-
-local function PrintData(item)
-     if typeof(v) == "table" then
-        IfTable(v)
-    else
-      print(v)
-    end
-						end
-						PrintData(item)
-
+						local paint = paintCalc(partParts)
+						
+						
 						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 						local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
 						local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
@@ -452,231 +582,184 @@ local function PrintData(item)
 
 						moveCheck()
 
-
-						local paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.Color == v.Color then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Color",
-									[3] = v.Color
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						
+						--Color
+						for i, v in paint[1] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Color",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 
 						end
 
+						--Shape
+						for i, v in paint[2] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
+							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Shape",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+
+						end
+
+						--Material
+						for i, v in paint[3] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
+							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Material",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+
+						end
+
+						--Surface
 						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.Shape == v.Shape then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Shape",
-									[3] = v.Shape
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						for i, v in paint[4] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Surface",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 
 						end
 
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.Material == v.Material then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Material",
-									[3] = tostring(v.Material):split(".")[3]
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						--Transparency
+						for i, v in paint[5] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Transparency",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 
 						end
 
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.TopSurface == v.TopSurface then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Surface",
-									[3] = tostring(v.TopSurface):split(".")[3]
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						--Reflectance
+						for i, v in paint[6] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Reflectance",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 
 						end
 
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.Transparency == v.Transparency then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Transparency",
-									[3] = v.Transparency
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						--CanCollide
+						for i, v in paint[7] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "CanCollide",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
 
 						end
 
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.Reflectance == v.Reflectance then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "Reflectance",
-									[3] = v.Reflectance
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
+						--CastShadow
+						for i, v in paint[8] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, myPartParts[partI])
 							end
+							
+							
+
+							local args = {
+								[1] = argsParts,
+								[2] = "CastShadow",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+							
+
 						end
-
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.CanCollide == v.CanCollide then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-
-								local args = {
-									[1] = argsParts,
-									[2] = "CanCollide",
-									[3] = v.CanCollide
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
-							end
-						end
-
-						paintedParts = {}
-						for i, v in partParts do
-							local part = myPartParts[i]
-							if not table.find(paintedParts, part) then
-								local argsParts = {part}
-								for i2, secondPart in partParts do
-									if i2 > i then
-										if secondPart.CastShadow == v.CastShadow then
-											table.insert(argsParts, myPartParts[i2])
-											table.insert(paintedParts, myPartParts[i2])
-										end
-									end
-								end
-
-								local args = {
-									[1] = argsParts,
-									[2] = "CastShadow",
-									[3] = v.CastShadow
-								}
-								local stop = false
-								repeat
-									stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-								until stop == true
-								Copying = false
-								CopyButton.Text = "Copy"
-								CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
-								CopyOutline.Color = Color3.fromRGB(0, 255, 0)
-							end
-						end
-					end
+						
 				end
 			end
 		end
