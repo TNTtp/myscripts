@@ -190,6 +190,30 @@ Credits.TextSize = 14.000
 Credits.TextWrapped = true
 
 
+local function paintCalc(partParts)
+	local Paint = {}
+	Paint[Color] = {}
+	local paintedParts = {}
+	for i, v in partParts do
+		if not table.find(paintedParts, i) then
+			local Parts = {i}
+			for i2, secondPart in partParts do
+				if i2 > i then
+					if secondPart.Color == v.Color then
+						table.insert(Parts, i2)
+						table.insert(paintedParts, i2)
+					end
+				end
+			end
+			table.insert(Paint[Color], {
+					[1] = Parts,
+					[2] = v.Color
+			})
+		end
+	end
+	return Paint
+end
+
 
 local ended = false
 
@@ -291,6 +315,26 @@ CopyButton.Activated:Connect(function()
 								table.insert(partParts, v)
 							end
 						end
+						local item = paintCalc(partParts)
+						local IfTable
+IfTable = function(Table)
+  for i,v in pairs(Table) do
+     if typeof(v) == "table" then
+        IfTable(v)
+    else
+      print(v)
+    end
+  end
+end 
+
+local function PrintData(item)
+     if typeof(v) == "table" then
+        IfTable(v)
+    else
+      print(v)
+    end
+						end
+						PrintData(item)
 
 						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 						local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
