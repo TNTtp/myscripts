@@ -201,12 +201,13 @@ local function paintCalc(partParts)
 		[7] = {}, --CanCollide
 		[8] = {}, --CastShadow
 	}
-	
+	local LoadMax = 0
 	
 	--Color
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -227,6 +228,7 @@ local function paintCalc(partParts)
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -247,6 +249,7 @@ local function paintCalc(partParts)
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -267,6 +270,7 @@ local function paintCalc(partParts)
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -286,6 +290,7 @@ local function paintCalc(partParts)
 	--Transparency
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -305,6 +310,7 @@ local function paintCalc(partParts)
 	--Reflectance
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -324,6 +330,7 @@ local function paintCalc(partParts)
 	--CanCollide
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -343,6 +350,7 @@ local function paintCalc(partParts)
 	--CastShadow
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
+			LoadMax += 1
 			local Parts = {i}
 			for i2, secondPart in partParts do
 				if i2 > i then
@@ -359,7 +367,7 @@ local function paintCalc(partParts)
 		end
 	end
 	
-	return Paint
+	return Paint, LoadMax
 end
 
 
@@ -447,6 +455,7 @@ CopyButton.Activated:Connect(function()
 				CopyButton.Text = "Cancel"
 				CopyButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 				CopyOutline.Color = Color3.fromRGB(255, 0, 0)
+				ProgressText.Text = "0%"
 
 				local tObby = Obbys:FindFirstChild(T.Name)
 				if tObby then
@@ -463,7 +472,10 @@ CopyButton.Activated:Connect(function()
 								table.insert(partParts, v)
 							end
 						end
-						local paint = paintCalc(partParts)
+						local paint, loadMax = paintCalc(partParts)
+						loadMax += 3
+						local Load = 0
+						
 						
 						
 						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
@@ -478,6 +490,8 @@ CopyButton.Activated:Connect(function()
 						repeat
 							stop = game:GetService("ReplicatedStorage").Events.ClearObby:InvokeServer()
 						until stop == true
+						
+						
 
 						local partmade = game:GetService("ReplicatedStorage").Events.AddObject:InvokeServer(unpack(args))
 						local function partCheck()
@@ -489,6 +503,9 @@ CopyButton.Activated:Connect(function()
 						end
 
 						partCheck()
+						
+						load += 1
+						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 
 
@@ -532,6 +549,9 @@ CopyButton.Activated:Connect(function()
 						end
 
 						cloneCheck()
+						
+						load += 1
+						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						for _, v in myParts:GetChildren() do
 							if v.Name == "Part" then
@@ -582,6 +602,9 @@ CopyButton.Activated:Connect(function()
 
 						moveCheck()
 
+						load += 1
+						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
 						
 						--Color
 						for i, v in paint[1] do
@@ -602,6 +625,8 @@ CopyButton.Activated:Connect(function()
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
 							
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -623,7 +648,9 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -645,12 +672,13 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
 						--Surface
-						paintedParts = {}
 						for i, v in paint[4] do
 							local argsParts = {}
 							for _, partI in v[1] do
@@ -668,7 +696,9 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -690,7 +720,9 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -712,7 +744,9 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -734,7 +768,9 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 
@@ -756,10 +792,17 @@ CopyButton.Activated:Connect(function()
 							repeat
 								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
 							until stop == true
-							
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
 						end
 						
+						Copying = false
+						CopyButton.Text = "Copy"
+						CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+						CopyOutline.Color = Color3.fromRGB(0, 255, 0)
+						ProgressText.Text = ""
 				end
 			end
 		end
@@ -768,5 +811,6 @@ CopyButton.Activated:Connect(function()
 		CopyButton.Text = "Copy"
 		CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
 		CopyOutline.Color = Color3.fromRGB(0, 255, 0)
+		ProgressText.Text = ""
 	end
 end)
