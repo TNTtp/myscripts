@@ -190,20 +190,12 @@ Credits.TextSize = 14.000
 Credits.TextWrapped = true
 
 
-local function paintCalc(partParts)
-	local Paint = {
-		[1] = {}, --Color
-		[2] = {}, --Shape
-		[3] = {}, --Material
-		[4] = {}, --Surface
-		[5] = {}, --Transparency
-		[6] = {}, --Reflectance
-		[7] = {}, --CanCollide
-		[8] = {}, --CastShadow
-	}
+local function paintCalc(partParts, Paint)
+	
 	local LoadMax = 0
 
 	--Color
+	if Paint[1] then
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
@@ -223,8 +215,10 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--Shape
+	if Paint[2] then
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
@@ -244,8 +238,10 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--Material
+	if Paint[3] then
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
@@ -265,8 +261,10 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--Surface
+	if Paint[4] then
 	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
@@ -286,8 +284,11 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--Transparency
+	if Paint[5] then
+	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
 			LoadMax += 1
@@ -306,8 +307,11 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--Reflectance
+	if Paint[6] then
+	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
 			LoadMax += 1
@@ -326,8 +330,11 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--CanCollide
+	if Paint[7] then
+	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
 			LoadMax += 1
@@ -346,8 +353,11 @@ local function paintCalc(partParts)
 			})
 		end
 	end
+	end
 
 	--CastShadow
+	if Paint[8] then
+	local paintedParts = {}
 	for i, v in partParts do
 		if not table.find(paintedParts, i) then
 			LoadMax += 1
@@ -365,6 +375,7 @@ local function paintCalc(partParts)
 				[2] = v.CastShadow
 			})
 		end
+	end
 	end
 
 	return Paint, LoadMax
@@ -464,32 +475,101 @@ CopyButton.Activated:Connect(function()
 						local tSpawn = tObby.StartingSpawn.StartingPart
 						local Parts = tObby.Items.Parts:GetChildren()
 						local partParts = {}
+						local tParts = {}
 						local cd = false
 
 
 						for _, v in Parts do
-							if v.Name == "Part" then
-								table.insert(partParts, v)
+							local exist = nil
+							for _, Part in tParts do
+								if Part[2] == v.Name then
+									exist = Part
+								end
+							end
+							if exist then
+								table.insert(exist[1], v)
+							else
+								table.insert(tParts, {
+									[1] = {v},
+									[2] = v.Name
+								})
 							end
 						end
-						local paint, loadMax = paintCalc(partParts)
-						loadMax += 3
+
+						for _, Table in tParts do
+							for _, TablePart in Table[1] do
+								table.insert(partParts, TablePart)
+							end
+						end
+						local loadMax = 0
+						local paint = {}
+						for i, Table in tParts do
+							local noShape = {
+								"3 Point Pyramid",
+								"Head",
+								"Half Ball",
+								"Half Cylinder",
+								"Half Hollow Cylinder",
+								"Hollow Cylinder",
+								"Pyramid",
+								"Torus",
+								"Cone",
+								"Ramp",
+								"Star",
+								"Hole",
+								"Truss"
+							}
+							local paintTemp = nil
+							print(Table[2])
+							for i, v in Table do
+								print(v)
+							end
+							if table.find(noShape, Table[2]) then
+								paintTemp = {
+									[1] = {}, --Color
+									--[2] = {}, --Shape
+									[3] = {}, --Material
+									[4] = {}, --Surface
+									[5] = {}, --Transparency
+									[6] = {}, --Reflectance
+									[7] = {}, --CanCollide
+									[8] = {}, --CastShadow
+								}
+							else
+								paintTemp = {
+									[1] = {}, --Color
+									[2] = {}, --Shape
+									[3] = {}, --Material
+									[4] = {}, --Surface
+									[5] = {}, --Transparency
+									[6] = {}, --Reflectance
+									[7] = {}, --CanCollide
+									[8] = {}, --CastShadow
+								}
+							end
+							local addPaint, addloadMax = paintCalc(Table[1], paintTemp)
+							loadMax += addloadMax
+							paint[i] = addPaint
+						end
+						loadMax += 2
+						loadMax += #tParts
 						local load = 0
-
-
-
-						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
-						local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
-						local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
-						local args = {
-							[1] = "Part",
-							[2] = CFrame.new(spawnX, spawnY, spawnZ) 
-						}
-
 						local stop = false
 						repeat
 							stop = game:GetService("ReplicatedStorage").Events.ClearObby:InvokeServer()
 						until stop == true
+
+						for _, Table in tParts do
+						local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
+						local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
+						local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
+						local args = {
+							[1] = Table[2],
+							[2] = CFrame.new(spawnX, spawnY, spawnZ) 
+						}
+
+						
+						
 
 
 
@@ -506,15 +586,14 @@ CopyButton.Activated:Connect(function()
 
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+						end
 
 
 
 						local myPartParts = {}
 
 						for _, v in myParts:GetChildren() do
-							if v.Name == "Part" then
-								table.insert(myPartParts, v)
-							end
+							table.insert(myPartParts, v)
 						end
 
 
@@ -524,18 +603,26 @@ CopyButton.Activated:Connect(function()
 
 
 						local args = {}
-
-						for i = 1, #partParts - #myPartParts do
+						for i, partTable in tParts do
+						for i = 1, #partTable[1] - 1 do
 
 							local spawnX = math.random(myArea.Position.X - (myArea.Size.X / 2 - 10), myArea.Position.X + (myArea.Size.X / 2 - 10))
 							local spawnY = math.random(myArea.Position.Y - (myArea.Size.Y / 2 - 10), myArea.Position.Y + (myArea.Size.Y / 2 - 10))
 							local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
 
+							local foundPart = nil
+							for _, v in myPartParts do
+								if v.Name == partTable[2] then
+									foundPart = v
+								end
+							end
+							
 							table.insert(args, {
-								[1] = myPartParts[1],
+								[1] = foundPart,
 								[2] = CFrame.new(spawnX, spawnY, spawnZ),
 								[3] = Vector3.new(1, 1, 1)
 							})
+						end
 						end
 
 
@@ -552,13 +639,14 @@ CopyButton.Activated:Connect(function()
 
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
+						
+						table.clear(myPartParts)
 						for _, v in myParts:GetChildren() do
-							if v.Name == "Part" then
-								table.insert(myPartParts, v)
-							end
+							table.insert(myPartParts, v)
 						end
 
+						local myPartsTable = {}
+						
 						local mirror = false
 						if mySpawn.Position.Z > 0 then
 							if tSpawn.Position.Z < 0 then
@@ -570,9 +658,26 @@ CopyButton.Activated:Connect(function()
 							end
 						end
 
+						for _, v in myParts:GetChildren() do
+							local exist = nil
+							for _, Part in myPartsTable do
+								if Part[2] == v.Name then
+									exist = Part
+								end
+							end
+							if exist then
+								table.insert(exist[1], v)
+							else
+								table.insert(myPartsTable, {
+									[1] = {v},
+									[2] = v.Name
+								})
+							end
+						end
+						
 						local args = {}
-
-						for i, v in partParts do
+						for i, Table in tParts do
+						for i2, v in Table[1] do
 							local Pos = Vector3.new(0,0,0)
 							local CF = CFrame.new(Vector3.new(0,0,0))
 							if mirror == true then
@@ -583,11 +688,20 @@ CopyButton.Activated:Connect(function()
 								CF = (CFrame.new(Pos) * v.CFrame.Rotation)
 							end
 
+							local finalTable = nil
+							
+							for _, currentTable in myPartsTable do
+								if currentTable[2] == Table[2] then
+									finalTable = currentTable
+								end
+							end
+									
 							table.insert(args, {
-								[1] = myPartParts[i],
+								[1] = finalTable[1][i2],
 								[2] = CF,
 								[3] = v.Size
 							})
+						end
 						end
 
 
@@ -605,213 +719,17 @@ CopyButton.Activated:Connect(function()
 						load += 1
 						ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
 
+						for index, Table in tParts do
+						local finalTable = nil
 
+						for _, currentTable in myPartsTable do
+							if currentTable[2] == Table[2] then
+								finalTable = currentTable
+							end
+						end
+						
 						--Color
-						for i, v in paint[1] do
+						for i, v in paint[index][1] do
 							local argsParts = {}
 							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Color",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--Shape
-						for i, v in paint[2] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Shape",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--Material
-						for i, v in paint[3] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Material",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--Surface
-						for i, v in paint[4] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Surface",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--Transparency
-						for i, v in paint[5] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Transparency",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--Reflectance
-						for i, v in paint[6] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "Reflectance",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--CanCollide
-						for i, v in paint[7] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "CanCollide",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						--CastShadow
-						for i, v in paint[8] do
-							local argsParts = {}
-							for _, partI in v[1] do
-								table.insert(argsParts, myPartParts[partI])
-							end
-
-
-
-							local args = {
-								[1] = argsParts,
-								[2] = "CastShadow",
-								[3] = v[2]
-							}
-							local stop = false
-							repeat
-								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
-							until stop == true
-
-							load += 1
-							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
-
-						end
-
-						Copying = false
-						CopyButton.Text = "Copy"
-						CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
-						CopyOutline.Color = Color3.fromRGB(0, 255, 0)
-						ProgressText.Text = ""
-					end
-				end
-			end
-		else
-			Copying = false
-			CopyButton.Text = "Copy"
-			CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
-			CopyOutline.Color = Color3.fromRGB(0, 255, 0)
-			ProgressText.Text = ""
-		end
-	end
-end)
+								table.insert(argsParts, finalTable[1][partI]
