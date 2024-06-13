@@ -729,7 +729,228 @@ CopyButton.Activated:Connect(function()
 						end
 						
 						--Color
+						if paint[index][1] then
 						for i, v in paint[index][1] do
 							local argsParts = {}
 							for _, partI in v[1] do
-								table.insert(argsParts, finalTable[1][partI]
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Color",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						--Shape
+						if paint[index][2] then
+						for i, v in paint[index][2] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Shape",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						--Material
+						if paint[index][3] then
+						for i, v in paint[index][3] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Material",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						--Surface
+						if paint[index][4] then
+						for i, v in paint[index][4] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Surface",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+									
+						end
+						end
+
+						--Transparency
+						if paint[index][5] then
+						for i, v in paint[index][5] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Transparency",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+
+						--Reflectance
+						for i, v in paint[index][6] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "Reflectance",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						--CanCollide
+						if paint[index][7] then
+						for i, v in paint[index][7] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "CanCollide",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						--CastShadow
+						if paint[index][8] then
+						for i, v in paint[index][8] do
+							local argsParts = {}
+							for _, partI in v[1] do
+								table.insert(argsParts, finalTable[1][partI])
+							end
+
+
+
+							local args = {
+								[1] = argsParts,
+								[2] = "CastShadow",
+								[3] = v[2]
+							}
+							local stop = false
+							repeat
+								stop = game:GetService("ReplicatedStorage").Events.PaintObject:InvokeServer(unpack(args))
+							until stop == true
+
+							load += 1
+							ProgressText.Text = math.round((load / loadMax) * 100) .. "%"
+
+						end
+						end
+
+						end
+
+						Copying = false
+						CopyButton.Text = "Copy"
+						CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+						CopyOutline.Color = Color3.fromRGB(0, 255, 0)
+						ProgressText.Text = ""
+					end
+				end
+			end
+		else
+			Copying = false
+			CopyButton.Text = "Copy"
+			CopyButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+			CopyOutline.Color = Color3.fromRGB(0, 255, 0)
+			ProgressText.Text = ""
+		end
+	end
+end)
