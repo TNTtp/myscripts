@@ -596,8 +596,25 @@ CopyButton.Activated:Connect(function()
 							table.insert(myPartParts, v)
 						end
 
+						local myPartsTable = {}
 
-
+						for _, v in myParts:GetChildren() do
+							print(v)
+							local exist = nil
+							for _, Part in myPartsTable do
+								if Part[2] == v.Name then
+									exist = Part
+								end
+							end
+							if exist then
+								table.insert(exist[1], v)
+							else
+								table.insert(myPartsTable, {
+									[1] = {v},
+									[2] = v.Name
+								})
+							end
+						end
 
 
 
@@ -611,14 +628,14 @@ CopyButton.Activated:Connect(function()
 							local spawnZ = math.random(myArea.Position.Z - (myArea.Size.Z / 2 - 10), myArea.Position.Z + (myArea.Size.Z / 2 - 10))
 
 							local foundPart = nil
-							for _, v in myPartParts do
-								if v.Name == partTable[2] then
+							for _, v in myPartsTable do
+								if v[2] == partTable[2] then
 									foundPart = v
 								end
 							end
 							
 							table.insert(args, {
-								[1] = foundPart,
+								[1] = foundPart[1][1],
 								[2] = CFrame.new(spawnX, spawnY, spawnZ),
 								[3] = Vector3.new(1, 1, 1)
 							})
@@ -645,7 +662,7 @@ CopyButton.Activated:Connect(function()
 							table.insert(myPartParts, v)
 						end
 
-						local myPartsTable = {}
+						myPartsTable = {}
 						
 						local mirror = false
 						if mySpawn.Position.Z > 0 then
